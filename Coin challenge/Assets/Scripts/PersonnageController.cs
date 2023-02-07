@@ -9,6 +9,8 @@ public class PersonnageController : MonoBehaviour
     float vitesseRotation;
     float dureeRotation = 0.05f;
     [SerializeField]
+    float jumpForce;
+    [SerializeField]
     float vitessePers = 10;
     [SerializeField]
     Camera cam;
@@ -31,7 +33,7 @@ public class PersonnageController : MonoBehaviour
         if (direction.magnitude > 0.1f) MovePlayer();
 
         animator.SetBool("IsRunning", direction.magnitude > 0.1f);
-        // MovePlayerCamera();
+        //MovePlayerCamera();
     }
 
     void MovePlayer()
@@ -43,7 +45,7 @@ public class PersonnageController : MonoBehaviour
         _moveDir = _moveDir.normalized;
         rb.MovePosition(transform.position + (_moveDir * vitessePers * Time.deltaTime));
 
-        /*bool _isGrounded = IsGrounded();
+        bool _isGrounded = IsGrounded();
 
         animator.SetBool("IsJumping", !_isGrounded);
 
@@ -52,7 +54,20 @@ public class PersonnageController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space) && _isGrounded)
         {
-            rb.AddForce(Vector3.up * jumpforce, ForceMode.Impulse);
-        }*/
+            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+        }
+    }
+    bool IsGrounded()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, Vector3.down, out hit, 0.5f))
+        {
+            
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 }

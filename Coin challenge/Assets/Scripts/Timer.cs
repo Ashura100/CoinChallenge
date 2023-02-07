@@ -5,29 +5,36 @@ using UnityEngine.UI;
 
 public class Timer : MonoBehaviour
 {
-    public GameObject textDisplay;
-    public int secondleft = 300;
-    public bool takingAway = false;
+    [SerializeField] private Text uiText;
 
-    void Start()
+    public int Duration;
+    private int remainingDuration;
+
+    private void Start()
     {
-        textDisplay.GetComponent<Text>().text = "00:" + secondleft;
+        Being(Duration);
     }
 
-    void Update()
+    void Being(int Second)
     {
-        if (takingAway == false && secondleft > 0)
+        remainingDuration = Second;
+        StartCoroutine(UpdateTimer());
+    }
+
+    IEnumerator UpdateTimer()
+    {
+        while(remainingDuration >= 0)
         {
-            StartCoroutine(TimerTake());
+            //uiText.text = $"{remainingDuration /60} : {remainingDuration %60}";
+            remainingDuration--;
+            yield return new WaitForSeconds(1f);
+
         }
+        OnEnd();
     }
 
-    IEnumerator TimerTake()
+    void OnEnd()
     {
-        takingAway = true;
-        yield return new WaitForSeconds(1);
-        secondleft -= 1;
-        textDisplay.GetComponent<Text>().text = "00:" + secondleft;
-        takingAway = false;
+        print ("Fin");
     }
 }
