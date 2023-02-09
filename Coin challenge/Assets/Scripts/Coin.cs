@@ -4,19 +4,14 @@ using UnityEngine;
 
 public class Coin : MonoBehaviour
 {
-    public int coins;
-
-    private void Start()
+    [SerializeField]
+    public int coinValue;
+    private void OnTriggerEnter(Collider collision)
     {
-        ScoreManager.instance.AddPoint();
-    }
-    private void OnTriggerEnter(Collider Col)
-    {
-        if (Col.gameObject.tag == "Coins")
+        if (collision.CompareTag("Player"))
         {
-            Debug.Log("coin collect");
-            coins = coins + 1;
-            Col.gameObject.SetActive(false);
+            ScoreManager.instance.AddCoins();
+            Destroy(gameObject);
         }
     }
 }

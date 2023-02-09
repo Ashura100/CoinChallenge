@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class ScoreManager : MonoBehaviour
 {
+    public Coin coin;
     public static ScoreManager instance;
 
     public Text scoreText;
@@ -24,7 +25,7 @@ public class ScoreManager : MonoBehaviour
         highScoreText.text = "HIGHSCORE " + highScore.ToString();
     }
 
-    public void AddPoint()
+    public void AddCoins()
     {
         score += 1;
         scoreText.text = "SCORE " + score.ToString();

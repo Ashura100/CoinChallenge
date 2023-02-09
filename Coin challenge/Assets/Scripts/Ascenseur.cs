@@ -34,7 +34,7 @@ public class Ascenseur : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GoEtage(1);
+
     }
     
     public void GoEtage(int numEtage)

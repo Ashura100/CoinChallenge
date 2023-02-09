@@ -18,6 +18,8 @@ public class PersonnageController : MonoBehaviour
     Rigidbody rb;
     [SerializeField]
     Animator animator;
+    [SerializeField]
+    private LayerMask groundMask;
     // Start is called before the first frame update
     void Start()
     {
@@ -60,7 +62,7 @@ public class PersonnageController : MonoBehaviour
     bool IsGrounded()
     {
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, Vector3.down, out hit, 0.5f))
+        if (Physics.Raycast(transform.position, Vector3.down, out hit, 0.5f, groundMask))
         {
             
             return true;

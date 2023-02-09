@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Timer : MonoBehaviour
 {
@@ -25,7 +26,7 @@ public class Timer : MonoBehaviour
     {
         while(remainingDuration >= 0)
         {
-            //uiText.text = $"{remainingDuration /60} : {remainingDuration %60}";
+            uiText.text = $"{remainingDuration /60} : {remainingDuration %60}";
             remainingDuration--;
             yield return new WaitForSeconds(1f);
 
@@ -36,5 +37,6 @@ public class Timer : MonoBehaviour
     void OnEnd()
     {
         print ("Fin");
+        SceneManager.LoadScene("GameOver");
     }
 }
