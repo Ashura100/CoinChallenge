@@ -36,6 +36,11 @@ public class PersonnageController : MonoBehaviour
 
         animator.SetBool("IsRunning", direction.magnitude > 0.1f);
         //MovePlayerCamera();
+        bool _isGrounded = IsGrounded();
+        if (Input.GetKeyDown(KeyCode.Space) && _isGrounded)
+        {
+            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+        }
     }
 
     void MovePlayer()
@@ -46,30 +51,11 @@ public class PersonnageController : MonoBehaviour
         Vector3 _moveDir = Quaternion.Euler(0, _targetAngle, 0) * Vector3.forward;
         _moveDir = _moveDir.normalized;
         rb.MovePosition(transform.position + (_moveDir * vitessePers * Time.deltaTime));
-
-        bool _isGrounded = IsGrounded();
-
-        animator.SetBool("IsJumping", !_isGrounded);
-
-
-        if (Input.GetKeyDown(KeyCode.Space)) Debug.Log(_isGrounded);
-
-        if (Input.GetKeyDown(KeyCode.Space) && _isGrounded)
-        {
-            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-        }
     }
     bool IsGrounded()
     {
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, Vector3.down, out hit, 0.5f, groundMask))
-        {
-            
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        Debug.DrawRay(transform.position + new Vector3(0, 0.1f, 0), Vector3.down);
+        return (Physics.Raycast(transform.position + new Vector3(0, 0.1f, 0), Vector3.down, out hit, 0.5f, groundMask));
     }
 }

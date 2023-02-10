@@ -27,7 +27,7 @@ public class ScoreManager : MonoBehaviour
 
     public void AddCoins()
     {
-        score += 1;
+        score += +1;
         scoreText.text = "SCORE " + score.ToString();
         if(highScore < score)
             PlayerPrefs.SetInt("highscore", score);

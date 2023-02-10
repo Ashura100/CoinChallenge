@@ -8,10 +8,14 @@ public class Porte : MonoBehaviour
     private Animation Anim;
     [SerializeField]
     bool verrouiller;
+    [SerializeField]
+    private AudioClip PorteClip = null;
+
+    private AudioSource porte_AudioSource;
     // Start is called before the first frame update
     void Start()
     {
-        
+        porte_AudioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -21,6 +25,7 @@ public class Porte : MonoBehaviour
             return;
 
         Anim.Play("PorteOuv");
+        porte_AudioSource.PlayOneShot(PorteClip);
     }
 
     void OnTriggerExit()
