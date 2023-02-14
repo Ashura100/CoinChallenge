@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PersonnageController : MonoBehaviour
 {
+    public static PersonnageController instance;
     //struct stocke les directions et positions 
     Vector3 direction;
     float vitesseRotation;
@@ -15,11 +16,16 @@ public class PersonnageController : MonoBehaviour
     [SerializeField]
     Camera cam;
     [SerializeField]
-    Rigidbody rb;
+    public Rigidbody rb;
     [SerializeField]
     Animator animator;
     [SerializeField]
     private LayerMask groundMask;
+
+    void Awake()
+    {
+        instance = this;
+    }
     // Start is called before the first frame update
     void Start()
     {

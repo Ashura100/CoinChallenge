@@ -8,19 +8,19 @@ public class Coin : MonoBehaviour
     public int coinValue;
     [SerializeField]
     private AudioClip CoinCollect = null;
-    private AudioSource coins_AudioSource;
+    
 
     void Start()
     {
-        coins_AudioSource = GetComponent<AudioSource>();
+        
     }
     private void OnTriggerEnter(Collider collision)
     {
         if (collision.CompareTag("Player"))
         {
-            ScoreManager.instance.AddCoins();
+            AudioSource.PlayClipAtPoint(CoinCollect, transform.position);
+            ScoreManager.instance.AddCoins(coinValue);
             Destroy(gameObject);
         }
-        coins_AudioSource.PlayOneShot(CoinCollect);
     }
 }

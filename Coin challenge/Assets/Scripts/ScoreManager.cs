@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class ScoreManager : MonoBehaviour
 {
-    public Coin coin;
     public static ScoreManager instance;
 
     public Text scoreText;
@@ -25,11 +24,14 @@ public class ScoreManager : MonoBehaviour
         highScoreText.text = "HIGHSCORE " + highScore.ToString();
     }
 
-    public void AddCoins()
+    public void AddCoins(int coinValue)
     {
-        score += +1;
+        score += coinValue;
         scoreText.text = "SCORE " + score.ToString();
         if(highScore < score)
-            PlayerPrefs.SetInt("highscore", score);
+        {
+            highScore = score;
+        }
+            //PlayerPrefs.SetInt("highscore", score);
     }
 }
