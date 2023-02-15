@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class Checkpoint : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    DeadZone dz;
+    private void Start()
     {
-        
+        dz = GameObject.Find("DeadZone").GetComponent<DeadZone>();
     }
-
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter(Collider collision)
     {
-        
+        if (collision.CompareTag("Player"))
+        {
+            dz.respawnPositions = gameObject.transform.position;
+            Debug.Log("tombé");
+        }
     }
 }
