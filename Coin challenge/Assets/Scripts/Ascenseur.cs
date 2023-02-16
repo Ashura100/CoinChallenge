@@ -46,13 +46,13 @@ public class Ascenseur : MonoBehaviour
     // Update is called once per frame
     IEnumerator GoEtageCorout(int numEtage)
     {
-        PersonnageController.instance.transform.SetParent(rigidBody.transform);
-        PersonnageController.instance.rb.isKinematic = true;
         float positionDepart = positionActuelle;
         float positionCible = EtageInfosList[numEtage].T;
         float DeltaT = Mathf.Abs(positionCible - positionDepart);
         Debug.Log(positionDepart + " " + positionCible);
         if (positionDepart == positionCible) yield break;
+        PersonnageController.instance.transform.SetParent(rigidBody.transform);
+        PersonnageController.instance.rb.isKinematic = true;
         float t = 0;
         while (t < 1.1f) 
         {

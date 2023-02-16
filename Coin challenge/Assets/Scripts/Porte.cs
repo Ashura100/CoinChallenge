@@ -18,7 +18,6 @@ public class Porte : MonoBehaviour
         porte_AudioSource = GetComponent<AudioSource>();
     }
 
-    // Update is called once per frame
     void OnTriggerEnter()
     {
         if (verrouiller)
