@@ -776,7 +776,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8713412228522767226, guid: 416d259964a68d24bb6ecc05ad7e7cd0, type: 3}
       propertyPath: vitessePers
-      value: 200
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 8713412228522767226, guid: 416d259964a68d24bb6ecc05ad7e7cd0, type: 3}
       propertyPath: groundMask.m_Bits
@@ -3210,6 +3210,14 @@ PrefabInstance:
     - target: {fileID: 3483149534166270272, guid: 15a319ff553b8e34d95e659f25f8e17c, type: 3}
       propertyPath: verrouiller
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8705529339921910570, guid: 15a319ff553b8e34d95e659f25f8e17c, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 1ea06da590997d846876aec78eddd982, type: 3}
+    - target: {fileID: 8705529339921910570, guid: 15a319ff553b8e34d95e659f25f8e17c, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 15a319ff553b8e34d95e659f25f8e17c, type: 3}
@@ -103769,11 +103777,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 45510910293928948, guid: bf4bf28ccfb9cfc4b8a05799a98cce43, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.043118946
+      value: 0.043118935
       objectReference: {fileID: 0}
     - target: {fileID: 45510910293928948, guid: bf4bf28ccfb9cfc4b8a05799a98cce43, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.0027436677
+      value: 0.002743667
       objectReference: {fileID: 0}
     - target: {fileID: 45510910293928948, guid: bf4bf28ccfb9cfc4b8a05799a98cce43, type: 3}
       propertyPath: m_LocalRotation.y
@@ -103781,7 +103789,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 45510910293928948, guid: bf4bf28ccfb9cfc4b8a05799a98cce43, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.06344249
+      value: -0.06344248
       objectReference: {fileID: 0}
     - target: {fileID: 45510910610769115, guid: bf4bf28ccfb9cfc4b8a05799a98cce43, type: 3}
       propertyPath: m_Name
@@ -103841,11 +103849,11 @@ PrefabInstance:
       objectReference: {fileID: 137104995}
     - target: {fileID: 45510911263674042, guid: bf4bf28ccfb9cfc4b8a05799a98cce43, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.04319017
+      value: 0.043190137
       objectReference: {fileID: 0}
     - target: {fileID: 45510911263674042, guid: bf4bf28ccfb9cfc4b8a05799a98cce43, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.0011755637
+      value: 0.0011755626
       objectReference: {fileID: 0}
     - target: {fileID: 45510911263674042, guid: bf4bf28ccfb9cfc4b8a05799a98cce43, type: 3}
       propertyPath: m_LocalRotation.y

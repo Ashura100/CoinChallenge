@@ -8,16 +8,13 @@ public class Coffre : MonoBehaviour
     private Text interactUI;
     public Animator Anim;
     bool isInRange;
-    /*[SerializeField]
+    [SerializeField]
     private AudioClip CoffreClip = null;
-
-    private AudioSource porte_AudioSource;*/
 
     void Start()
     {
         interactUI = GameObject.FindGameObjectWithTag("InteractUI").GetComponent<Text>();
     }
-        //coffre_AudioSource = GetComponent<AudioSource>();
 
     void Update()
     {
@@ -38,8 +35,9 @@ public class Coffre : MonoBehaviour
         {
             interactUI.enabled = true;
             isInRange = true;
+            AudioSource.PlayClipAtPoint(CoffreClip, transform.position);
+
         }
-        //coffre_AudioSource.PlayOneShot(CoffreClip);
     }
     private void OnTriggerExit(Collider collision)
     {
