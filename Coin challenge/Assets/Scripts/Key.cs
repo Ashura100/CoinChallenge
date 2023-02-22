@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Key : MonoBehaviour
 {
-    /*[SerializeField]
-    private AudioClip KeyCollect = null;*/
+    [SerializeField]
+    private AudioClip CoinCollect = null;
 
 
     void Start()
@@ -16,7 +16,7 @@ public class Key : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            //AudioSource.PlayClipAtPoint(KeyCollect, transform.position);
+            AudioSource.PlayClipAtPoint(CoinCollect, transform.position);
             ScoreManager.instance.AddKeys();
             Destroy(gameObject);
         }
