@@ -26,7 +26,8 @@ public class Coffre : MonoBehaviour
 
     void OpenChest()
     {
-        Anim.SetTrigger("OuvrirCoffre");
+        Anim.SetBool("OuvrirCoffre",true);
+        AudioSource.PlayClipAtPoint(CoffreClip, transform.position);
     }
 
     void OnTriggerEnter(Collider collision)
@@ -35,7 +36,6 @@ public class Coffre : MonoBehaviour
         {
             interactUI.enabled = true;
             isInRange = true;
-            AudioSource.PlayClipAtPoint(CoffreClip, transform.position);
 
         }
     }

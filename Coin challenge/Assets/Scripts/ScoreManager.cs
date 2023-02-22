@@ -9,9 +9,11 @@ public class ScoreManager : MonoBehaviour
 
     public Text scoreText;
     public Text highScoreText;
+    public Text keyNumberText;
 
     int score = 0;
     int highScore = 0;
+    int key = 0;
     // Start is called before the first frame update
     private void Awake()
     {
@@ -22,16 +24,24 @@ public class ScoreManager : MonoBehaviour
         highScore = PlayerPrefs.GetInt("highscore", 0);
         scoreText.text = "SCORE " + score.ToString();
         highScoreText.text = "HIGHSCORE " + highScore.ToString();
+        keyNumberText.text = "Key Number " + key.ToString();
+
     }
 
     public void AddCoins(int coinValue)
     {
         score += coinValue;
         scoreText.text = "SCORE " + score.ToString();
-        if(highScore < score)
+        if (highScore < score)
         {
             highScore = score;
         }
-            //PlayerPrefs.SetInt("highscore", score);
+        //PlayerPrefs.SetInt("highscore", score);
+    }
+
+    public void AddKeys()
+    {
+        key += 1;
+        keyNumberText.text = "Key Number " + key.ToString();
     }
 }

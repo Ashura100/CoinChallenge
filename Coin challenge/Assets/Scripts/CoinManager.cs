@@ -8,7 +8,7 @@ public class CoinManager : MonoBehaviour
 
     void OnTriggerEnter()
     {
-        //Instantiate.(Coin, transform.position, transform.rotation);
+
     }
 }
 
