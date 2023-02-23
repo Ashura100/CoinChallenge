@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DeadZone : MonoBehaviour
 {
-    public Vector3 respawnPositions;
+    public static Vector3 respawnPositions;
     void OnTriggerEnter(Collider collision)
     {
         if (collision.CompareTag("Player")) 

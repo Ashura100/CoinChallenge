@@ -42,6 +42,7 @@ GameObject:
   - component: {fileID: 8713412228522767226}
   - component: {fileID: 8713412228522767228}
   - component: {fileID: 8713412228522767229}
+  - component: {fileID: 4435957369492289788}
   m_Layer: 0
   m_Name: Personnage
   m_TagString: Player
@@ -82,6 +83,9 @@ MonoBehaviour:
   cam: {fileID: 0}
   rb: {fileID: 8713412228522767228}
   animator: {fileID: 8770912613900506288}
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!54 &8713412228522767228
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -112,6 +116,18 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &4435957369492289788
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8713412228522767224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90dd64e849ee77248a574441d599f640, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &8713412230255774894
 PrefabInstance:
   m_ObjectHideFlags: 0
