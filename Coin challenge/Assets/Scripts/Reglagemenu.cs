@@ -8,6 +8,9 @@ public class Reglagemenu : MonoBehaviour
 {
     public AudioMixer audioMixer;
 
+    [SerializeField]
+    Slider levelMaster;
+
     public Dropdown resolutionDrop;
 
     Resolution[] resolutions; 
@@ -34,9 +37,9 @@ public class Reglagemenu : MonoBehaviour
         resolutionDrop.value = currentResolutionIndex;
         resolutionDrop.RefreshShownValue();
     }
-    public void SetVolume(float volume)
+    public void SetVolume()
     {
-        audioMixer.SetFloat("volume", volume);
+        audioMixer.SetFloat("Volume", levelMaster.value);
     }
 
     public void SetPleinEcran(bool isPleinEcran)

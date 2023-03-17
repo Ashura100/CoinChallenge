@@ -3,17 +3,34 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class LifeSystem : MonoBehaviour
+public class LifeSystem : MonoBehaviour, IAlife
 {
     public int maxHealth = 100;
     public int currentHealth;
 
     public HealthBar healthbar;
 
+    int IAlife.maxHealth
+    {
+        get
+        {
+            return this.maxHealth;
+        }
+    }
+
+    public int health
+    {
+        get
+        {
+            return this.currentHealth;
+        }
+    }
+
     void Start()
     {
+        healthbar.Init(this);
         currentHealth = maxHealth;
-        healthbar.SetMaxHealth(maxHealth);
+        healthbar.UpdateHealth();
     }
 
     void Update()
@@ -29,7 +46,7 @@ public class LifeSystem : MonoBehaviour
     void TakeDamage(int damage)
     {
         currentHealth -= damage;
-        healthbar.SetHealth(currentHealth);
+        healthbar.UpdateHealth();
     }
 
     void Die()
@@ -38,5 +55,18 @@ public class LifeSystem : MonoBehaviour
         {
             SceneManager.LoadScene("GameOver");
         }
+    }
+}
+
+public interface IAlife
+{
+    int maxHealth
+    {
+        get;
+    }
+
+    int health
+    {
+        get;
     }
 }
