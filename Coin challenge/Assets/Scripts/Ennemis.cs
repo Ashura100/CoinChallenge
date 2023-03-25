@@ -6,17 +6,23 @@ using UnityEngine.AI;
 public class Ennemis : MonoBehaviour
 {
     [SerializeField]
-    private AudioClip ZombieClip = null;
+    LifeSystem lifeSystem;
+    [SerializeField]
+    private AudioClip audioClip = null;
     [SerializeField] private Transform _movePosTransform;
     private NavMeshAgent _navMeshAgent;
     public Transform player;
     public LayerMask playerMask, groundMask;
     Rigidbody rb;
     private AudioSource zombie_AudioSource;
+    [SerializeField]
+    Animator anim;
     //patrouille
     public Vector3 walkPoint;
     bool walkPointSet;
     public float walkPointRange;
+    [SerializeField]
+    float patrouilleSpeed, poursuiteSpeed = 1;
     //attaque
     public float timeBetweenAttacks;
     bool alreadyAttacked;
@@ -24,19 +30,23 @@ public class Ennemis : MonoBehaviour
     public float sightRange, attackRange;
     public bool playerInSightRange, playerInAttackRange;
 
+    public Transform attackPoint;
+    public int attackDamage = 20;
+
     public float health;
     void Awake()
     {
+        lifeSystem.onDieDel = Die;
         player = GameObject.Find("Personnage").transform;
         _navMeshAgent = GetComponent<NavMeshAgent>();
         rb = GetComponent<Rigidbody>();
         zombie_AudioSource = GetComponent<AudioSource>();
-        zombie_AudioSource.PlayOneShot(ZombieClip);
+        zombie_AudioSource.PlayOneShot(audioClip);
     }
 
     void FixedUpdate()
     {
-        playerInSightRange = Physics.CheckSphere(transform.position, sightRange, playerMask);
+        playerInSightRange = Physics.CheckSphere(transform.position, sightRange, playerMask); Debug.Log(playerInSightRange);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, playerMask);
 
         if (!playerInSightRange && !playerInAttackRange) Patrouille();
@@ -52,6 +62,8 @@ public class Ennemis : MonoBehaviour
             _navMeshAgent.SetDestination(walkPoint);
 
         Vector3 distanceToWalkPoint = transform.position - walkPoint;
+        anim.SetBool("IsMoving", true);
+        _navMeshAgent.speed = patrouilleSpeed;
 
         if (distanceToWalkPoint.magnitude < 1f)
             walkPointSet = false;
@@ -69,19 +81,29 @@ public class Ennemis : MonoBehaviour
     }
     void Poursuite()
     {
+        Debug.Log("poursuit");
+        anim.SetBool("IsMoving", true);
         _navMeshAgent.SetDestination(player.position);
+        _navMeshAgent.speed = poursuiteSpeed;
     }
 
     void Attaque()
     {
+        Debug.Log("attaque");
         _navMeshAgent.SetDestination(transform.position);
 
         transform.LookAt(player);
 
         if (!alreadyAttacked)
         {
+            anim.SetTrigger("IsAttacking");
             alreadyAttacked = true;
             Invoke(nameof(ArretAttaque), timeBetweenAttacks);
+            Collider[] hitEnemis = Physics.OverlapSphere(attackPoint.position, attackRange, playerMask);
+            foreach (Collider enemy in hitEnemis)
+            {
+                player.GetComponent<PersonnageController>().TakeDamage(attackDamage);
+            }
         }
     }
     void ArretAttaque()
@@ -89,7 +111,7 @@ public class Ennemis : MonoBehaviour
         alreadyAttacked = false;
     }
 
-    void TakeDamage(int damage)
+    public void TakeDamage(int damage)
     {
         health -= damage;
         if (health < 0) Invoke(nameof(Die), 5f);

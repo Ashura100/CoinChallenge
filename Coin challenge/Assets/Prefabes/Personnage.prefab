@@ -64,6 +64,7 @@ Transform:
   m_Children:
   - {fileID: 8710742551527172618}
   - {fileID: 5523926182395650746}
+  - {fileID: 8203490244797793884}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -79,12 +80,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 740664669f8639642be9af84f34f1825, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpForce: 0
-  vitessePers: 20
+  lifeSystem: {fileID: 1276463023317317357}
+  jumpForce: 80
+  vitessePers: 150
   cam: {fileID: 0}
   rb: {fileID: 8713412228522767228}
   animator: {fileID: 8770912613900506288}
   groundMask:
+    serializedVersion: 2
+    m_Bits: 8
+  attackPoint: {fileID: 0}
+  attackRange: 0.5
+  enemyLayer:
     serializedVersion: 2
     m_Bits: 0
 --- !u!54 &8713412228522767228
@@ -144,6 +151,36 @@ MonoBehaviour:
   maxHealth: 100
   currentHealth: 0
   healthbar: {fileID: 0}
+--- !u!1 &9100190561888526465
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8203490244797793884}
+  m_Layer: 6
+  m_Name: AttackPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8203490244797793884
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9100190561888526465}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8713412228522767227}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &8713412230255774894
 PrefabInstance:
   m_ObjectHideFlags: 0

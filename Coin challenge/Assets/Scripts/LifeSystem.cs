@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class LifeSystem : MonoBehaviour, IAlife
 {
+    public delegate void OnDie();
+    public OnDie onDieDel;
     public int maxHealth = 100;
     public int currentHealth;
 
@@ -51,9 +52,9 @@ public class LifeSystem : MonoBehaviour, IAlife
 
     void Die()
     {
-        if (currentHealth == 0)
+        if (currentHealth <= 0)
         {
-            SceneManager.LoadScene("GameOver");
+            if (onDieDel != null) onDieDel();
         }
     }
 }

@@ -1,11 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PersonnageController : MonoBehaviour
 {
     public static PersonnageController instance;
     //struct stocke les directions et positions 
+
+    [SerializeField]
+    LifeSystem lifeSystem;
     Vector3 direction;
     float vitesseRotation;
     float dureeRotation = 0.05f;
@@ -21,6 +25,13 @@ public class PersonnageController : MonoBehaviour
     Animator animator;
     [SerializeField]
     private LayerMask groundMask;
+    [SerializeField]
+    public LayerMask enemyLayer;
+
+    public Transform attackPoint;
+    public float attackRange = 0.5f;
+    public int attackDamage = 20;
+    public int health = 100;
 
     void Awake()
     {
@@ -29,7 +40,7 @@ public class PersonnageController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        lifeSystem.onDieDel = OnDie;
     }
 
     // Update is called once per frame
@@ -45,7 +56,13 @@ public class PersonnageController : MonoBehaviour
         bool _isGrounded = IsGrounded();
         if (Input.GetKeyDown(KeyCode.Space) && _isGrounded)
         {
+            animator.SetBool("IsJumping", jumpForce > 0.1f);
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+        }
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            Attack();
         }
     }
 
@@ -63,5 +80,34 @@ public class PersonnageController : MonoBehaviour
         RaycastHit hit;
         Debug.DrawRay(transform.position + new Vector3(0, 0.1f, 0), Vector3.down);
         return (Physics.Raycast(transform.position + new Vector3(0, 0.1f, 0), Vector3.down, out hit, 0.5f, groundMask));
+    }
+
+    void Attack()
+    {
+        animator.SetTrigger("IsAttacking");
+        Collider [] hitEnemis = Physics.OverlapSphere(attackPoint.position, attackRange, enemyLayer);
+        foreach(Collider enemy in hitEnemis)
+        {
+            enemy.GetComponent<Ennemis>().TakeDamage(attackDamage);
+        }
+    }
+
+    void OnDrawGizmosSelected()
+    {
+        if(attackPoint == null)
+        {
+            return;
+        }
+    }
+
+    public void TakeDamage(int damage)
+    {
+        health -= damage;
+        if (health < 0) Invoke(nameof(OnDie), 5f);
+    }
+    void OnDie()
+    {
+        SceneManager.LoadScene("GameOver");
+        lifeSystem.onDieDel -= OnDie;
     }
 }
