@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 8713412228522767229}
   - component: {fileID: 4435957369492289788}
   - component: {fileID: 1276463023317317357}
+  - component: {fileID: 8055701199053978529}
   m_Layer: 0
   m_Name: Personnage
   m_TagString: Player
@@ -82,18 +83,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lifeSystem: {fileID: 1276463023317317357}
   jumpForce: 80
-  vitessePers: 150
+  vitessePers: 200
   cam: {fileID: 0}
   rb: {fileID: 8713412228522767228}
   animator: {fileID: 8770912613900506288}
   groundMask:
     serializedVersion: 2
     m_Bits: 8
-  attackPoint: {fileID: 0}
-  attackRange: 0.5
   enemyLayer:
     serializedVersion: 2
     m_Bits: 0
+  attackPoint: {fileID: 0}
+  attackRange: 2
+  attackDamage: 20
+  health: 100
 --- !u!54 &8713412228522767228
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -151,6 +154,20 @@ MonoBehaviour:
   maxHealth: 100
   currentHealth: 0
   healthbar: {fileID: 0}
+--- !u!136 &8055701199053978529
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8713412228522767224}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &9100190561888526465
 GameObject:
   m_ObjectHideFlags: 0

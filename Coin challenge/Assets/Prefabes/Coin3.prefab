@@ -97,7 +97,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinValue: 50
-  CoinCollect: {fileID: 0}
+  CoinCollect: {fileID: 8300000, guid: 0b193ff55c36aa648a66638d24f86e1f, type: 3}
 --- !u!65 &8875500668379461428
 BoxCollider:
   m_ObjectHideFlags: 0

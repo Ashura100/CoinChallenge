@@ -5,24 +5,33 @@ using UnityEngine;
 public class SpawnPoints : MonoBehaviour
 {
     [SerializeField]
-    private GameObject coins;
+    private GameObject[] coins;
     [SerializeField]
-    private Transform[] spawnPoints;
+    private SpawnInfos[] spawnPoints;
 
     void Start()
     {
-        
+        foreach(SpawnInfos spawnInfos in spawnPoints)
+        {
+            CreateCoins(spawnInfos);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void CreateCoins(SpawnInfos spawnInfos)
     {
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            Transform randomPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
-            GameObject instantiated = Instantiate(coins);
-            instantiated.transform.position = randomPoint.position;
+        
+        if (spawnInfos.coinInst != null)
+            return;
+        int coinIndex = Random.Range(0, coins.Length);
+        spawnInfos.coinInst = Instantiate(coins[coinIndex]);
+        spawnInfos.coinInst.transform.position = spawnInfos.spawnPose.position;
+        spawnInfos.coinInst.transform.SetParent(transform);
+    }
 
-        }
+    [System.Serializable]
+    public class SpawnInfos
+    {
+        public Transform spawnPose;
+        public GameObject coinInst;
     }
 }

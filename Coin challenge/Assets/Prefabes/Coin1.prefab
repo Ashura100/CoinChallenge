@@ -110,7 +110,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinValue: 5
-  CoinCollect: {fileID: 0}
+  CoinCollect: {fileID: 8300000, guid: 0b193ff55c36aa648a66638d24f86e1f, type: 3}
 --- !u!82 &167815788207845626
 AudioSource:
   m_ObjectHideFlags: 0

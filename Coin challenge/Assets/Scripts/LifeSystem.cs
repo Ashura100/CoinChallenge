@@ -34,20 +34,11 @@ public class LifeSystem : MonoBehaviour, IAlife
         healthbar.UpdateHealth();
     }
 
-    void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.J))
-        {
-            TakeDamage(20);
-            Debug.Log("perd de la vie");
-        }
-        Die();
-    }
-
-    void TakeDamage(int damage)
+    public void TakeDamage(int damage)
     {
         currentHealth -= damage;
         healthbar.UpdateHealth();
+        Die();
     }
 
     void Die()

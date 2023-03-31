@@ -88,7 +88,7 @@ public class PersonnageController : MonoBehaviour
         Collider [] hitEnemis = Physics.OverlapSphere(attackPoint.position, attackRange, enemyLayer);
         foreach(Collider enemy in hitEnemis)
         {
-            enemy.GetComponent<Ennemis>().TakeDamage(attackDamage);
+            enemy.GetComponent<LifeSystem>().TakeDamage(attackDamage);
         }
     }
 
@@ -103,7 +103,9 @@ public class PersonnageController : MonoBehaviour
     public void TakeDamage(int damage)
     {
         health -= damage;
+        lifeSystem.healthbar.UpdateHealth();
         if (health < 0) Invoke(nameof(OnDie), 5f);
+        
     }
     void OnDie()
     {

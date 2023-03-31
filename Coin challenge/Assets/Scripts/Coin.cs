@@ -2,25 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Coin : MonoBehaviour
+public class Coin : MonoBehaviour, Iinteractable
 {
     [SerializeField]
     public int coinValue;
     [SerializeField]
     private AudioClip CoinCollect = null;
-    
 
-    void Start()
+    public bool isInteractable
     {
-        
-    }
-    private void OnTriggerEnter(Collider collision)
-    {
-        if (collision.CompareTag("Player"))
+        get
         {
+            return true;
+        }
+    }
+
+    public void Interact(GameObject gameInteraction)
+    {
             AudioSource.PlayClipAtPoint(CoinCollect, transform.position);
             ScoreManager.instance.AddCoins(coinValue);
             Destroy(gameObject);
-        }
     }
 }
