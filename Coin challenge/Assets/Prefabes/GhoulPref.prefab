@@ -50,7 +50,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifeSystem: {fileID: 6224754533468332495}
-  audioClip: {fileID: 0}
+  audioClip: {fileID: 8300000, guid: 14f276f1c5bde1e46be04fd07b0a55fa, type: 3}
   _movePosTransform: {fileID: 0}
   player: {fileID: 0}
   playerMask:
@@ -62,13 +62,15 @@ MonoBehaviour:
   anim: {fileID: 4722559576466607382}
   walkPoint: {x: 0, y: 0, z: 0}
   walkPointRange: 10
-  patrouilleSpeed: 2
-  poursuiteSpeed: 5
+  patrouilleSpeed: 5
+  poursuiteSpeed: 15
   timeBetweenAttacks: 2
   sightRange: 20
   attackRange: 1
   playerInSightRange: 0
   playerInAttackRange: 0
+  attackPoint: {fileID: 0}
+  attackDamage: 10
   health: 100
 --- !u!195 &6076190011266132839
 NavMeshAgent:
@@ -198,10 +200,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 2.2
-  m_Height: 4
+  m_Radius: 4
+  m_Height: 10
   m_Direction: 1
-  m_Center: {x: 0, y: 2, z: 0}
+  m_Center: {x: 0, y: 5, z: 0}
 --- !u!54 &6076190011266132834
 Rigidbody:
   m_ObjectHideFlags: 0

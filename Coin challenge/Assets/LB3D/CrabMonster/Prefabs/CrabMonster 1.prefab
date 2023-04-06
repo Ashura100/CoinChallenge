@@ -4023,11 +4023,12 @@ GameObject:
   m_Component:
   - component: {fileID: 5794526363542072584}
   - component: {fileID: 5850578553012415794}
-  - component: {fileID: 7315054497300717320}
   - component: {fileID: 4228068796299053299}
   - component: {fileID: 5096018943977455950}
   - component: {fileID: 2315678683242391448}
   - component: {fileID: 4819207738711331934}
+  - component: {fileID: 440169793752049760}
+  - component: {fileID: 6258550588917572626}
   m_Layer: 0
   m_Name: CrabMonster 1
   m_TagString: Untagged
@@ -4072,36 +4073,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &7315054497300717320
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5792744366562842766}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b735d1802f51ec742851e7909eb8cb60, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lifeSystem: {fileID: 0}
-  ZombieClip: {fileID: 0}
-  _movePosTransform: {fileID: 0}
-  player: {fileID: 0}
-  playerMask:
-    serializedVersion: 2
-    m_Bits: 64
-  groundMask:
-    serializedVersion: 2
-    m_Bits: 8
-  walkPoint: {x: 0, y: 0, z: 0}
-  walkPointRange: 0
-  timeBetweenAttacks: 0
-  sightRange: 0
-  attackRange: 0
-  playerInSightRange: 0
-  playerInAttackRange: 0
-  health: 0
 --- !u!114 &4228068796299053299
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4169,6 +4140,54 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &440169793752049760
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5792744366562842766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56544156cec09894f81941fb7fd27dcb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifeSystem: {fileID: 4228068796299053299}
+  audioClip: {fileID: 0}
+  _movePosTransform: {fileID: 0}
+  player: {fileID: 0}
+  playerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 0
+  anim: {fileID: 5850578553012415794}
+  walkPoint: {x: 0, y: 0, z: 0}
+  walkPointRange: 10
+  patrouilleSpeed: 5
+  poursuiteSpeed: 15
+  timeBetweenAttacks: 2
+  sightRange: 20
+  attackRange: 1
+  playerInSightRange: 0
+  playerInAttackRange: 0
+  attackPoint: {fileID: 0}
+  attackDamage: 20
+  health: 100
+--- !u!65 &6258550588917572626
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5792744366562842766}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4, y: 1, z: 5}
+  m_Center: {x: 0, y: 3, z: 0.5}
 --- !u!1 &5792748071347383548
 GameObject:
   m_ObjectHideFlags: 0

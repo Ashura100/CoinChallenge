@@ -28,7 +28,19 @@ public class PersonnageController : MonoBehaviour
     [SerializeField]
     public LayerMask enemyLayer;
 
-    public Transform attackPoint;
+    public float timeBetweenAttacks;
+    float lastAttackTime;
+    bool canAttack
+    {
+        get
+        {
+            if (Time.timeSinceLevelLoad - lastAttackTime < timeBetweenAttacks) return false;
+            return true;
+        }
+    }
+    bool alreadyAttacked;
+    [SerializeField]
+    Transform attackPoint;
     public float attackRange = 0.5f;
     public int attackDamage = 20;
     public int health = 100;
@@ -46,6 +58,7 @@ public class PersonnageController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //transform.LookAt(target, Vector3.up);
         direction = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical"));
         direction = direction.normalized;
 
@@ -82,22 +95,26 @@ public class PersonnageController : MonoBehaviour
         return (Physics.Raycast(transform.position + new Vector3(0, 0.1f, 0), Vector3.down, out hit, 0.5f, groundMask));
     }
 
-    void Attack()
+    public void Attack()
     {
-        animator.SetTrigger("IsAttacking");
-        Collider [] hitEnemis = Physics.OverlapSphere(attackPoint.position, attackRange, enemyLayer);
-        foreach(Collider enemy in hitEnemis)
+        if (!alreadyAttacked)
         {
-            enemy.GetComponent<LifeSystem>().TakeDamage(attackDamage);
+            animator.SetTrigger("IsAttacking");
+            alreadyAttacked = true;
+            Invoke(nameof(ArretAttaque), timeBetweenAttacks);
+            Collider[] hitEnemis = Physics.OverlapSphere(attackPoint.position, attackRange, enemyLayer);
+            foreach (Collider enemy in hitEnemis)
+            {
+                lastAttackTime = Time.timeSinceLevelLoad;
+                Debug.Log("enemmie touché");
+                enemy.GetComponent<LifeSystem>().TakeDamage(attackDamage);
+                
+            }
         }
     }
-
-    void OnDrawGizmosSelected()
+    void ArretAttaque()
     {
-        if(attackPoint == null)
-        {
-            return;
-        }
+        alreadyAttacked = false;
     }
 
     public void TakeDamage(int damage)
@@ -109,6 +126,7 @@ public class PersonnageController : MonoBehaviour
     }
     void OnDie()
     {
+        animator.SetTrigger("IsDying");
         SceneManager.LoadScene("GameOver");
         lifeSystem.onDieDel -= OnDie;
     }
