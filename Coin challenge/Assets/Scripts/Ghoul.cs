@@ -138,6 +138,7 @@ public class Ghoul : MonoBehaviour, Ilockable
 
     void Die()
     {
+        anim.SetTrigger("IsDying");
         Destroy(gameObject);
     }
 

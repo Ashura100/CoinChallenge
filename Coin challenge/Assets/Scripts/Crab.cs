@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Crab : MonoBehaviour
+public class Crab : MonoBehaviour, Ilockable
 {
     [SerializeField]
     LifeSystem lifeSystem;
@@ -34,6 +34,22 @@ public class Crab : MonoBehaviour
     public int attackDamage = 20;
 
     public float health;
+
+    public Transform focusPoint
+    {
+        get
+        {
+            return transform;
+        }
+    }
+
+    public bool isFocusable
+    {
+        get
+        {
+            return true;
+        }
+    }
     void Awake()
     {
         lifeSystem.onDieDel = Die;
@@ -117,6 +133,7 @@ public class Crab : MonoBehaviour
         {
             var player = other.gameObject.GetComponent<PersonnageController>();
             player.Attack();
+            Debug.Log("est touché");
         }
     }
 
@@ -130,6 +147,17 @@ public class Crab : MonoBehaviour
 
     void Die()
     {
+        anim.SetTrigger("IsDying");
         Destroy(gameObject);
+    }
+
+    public void OnFocus()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void OnUnFocus()
+    {
+        throw new System.NotImplementedException();
     }
 }
