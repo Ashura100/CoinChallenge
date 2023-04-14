@@ -4133,7 +4133,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   currentHealth: 0
-  healthbar: {fileID: 0}
+  healthbar: {fileID: 9044225347875027926}
 --- !u!195 &5096018943977455950
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -4170,7 +4170,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!136 &4819207738711331934
 CapsuleCollider:
@@ -4977,3 +4977,14 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8564773533353151240, guid: 1fad3a2b5204c684ba8f833881595411, type: 3}
   m_PrefabInstance: {fileID: 819579470385131741}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &9044225347875027926 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8564773533353151243, guid: 1fad3a2b5204c684ba8f833881595411, type: 3}
+  m_PrefabInstance: {fileID: 819579470385131741}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6003f64751725e478ad436a44143558, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

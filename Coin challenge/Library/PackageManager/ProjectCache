@@ -283,6 +283,7 @@ m_PackageAssets:
         - 2.0.0-preview.22
         - 2.0.0
         - 2.0.1
+        - 2.0.3
         - 2.1.0-preview.3
         - 2.1.0-preview.5
         - 2.1.0-preview.6
@@ -299,6 +300,7 @@ m_PackageAssets:
         - 2.0.0-preview.22
         - 2.0.0
         - 2.0.1
+        - 2.0.3
         - 2.1.0-preview.3
         - 2.1.0-preview.5
         - 2.1.0-preview.6
@@ -654,7 +656,7 @@ m_PackageAssets:
         email: 
         url: 
       category: 
-      type: 
+      type: asset
       description: 'Build, edit, and texture custom geometry in Unity. Use ProBuilder
         for in-scene level design, prototyping, collision meshes, all with on-the-fly
         play-testing.
@@ -705,6 +707,7 @@ m_PackageAssets:
         - 5.0.3
         - 5.0.4
         - 5.0.6
+        - 5.0.7
         compatible:
         - 4.0.2
         - 4.0.3
@@ -736,6 +739,7 @@ m_PackageAssets:
         - 5.0.3
         - 5.0.4
         - 5.0.6
+        - 5.0.7
         verified: 4.5.2
       dependencies:
       - name: com.unity.settings-manager
@@ -772,7 +776,7 @@ m_PackageAssets:
         isDefault: 1
         capabilities: 7
       hasRegistry: 1
-      hideInEditor: 1
+      hideInEditor: 0
       entitlements:
         isAllowed: 1
       isAssetStorePackage: 0
@@ -842,6 +846,7 @@ m_PackageAssets:
         - 1.3.1
         - 1.3.2
         - 1.3.3
+        - 1.3.4
         - 2.0.1-exp.1
         - 2.0.1-exp.2
         - 2.0.1-pre.12
@@ -853,6 +858,7 @@ m_PackageAssets:
         - 1.3.1
         - 1.3.2
         - 1.3.3
+        - 1.3.4
         - 2.0.1-exp.1
         - 2.0.1-exp.2
         - 2.0.1-pre.12
@@ -1159,8 +1165,10 @@ m_PackageAssets:
         - 1.7.1
         - 1.7.2
         - 1.7.3
+        - 1.7.4
         - 1.8.0
         - 1.8.1
+        - 1.8.2
         compatible:
         - 1.4.8
         - 1.5.0-pre.2
@@ -1191,8 +1199,10 @@ m_PackageAssets:
         - 1.7.1
         - 1.7.2
         - 1.7.3
+        - 1.7.4
         - 1.8.0
         - 1.8.1
+        - 1.8.2
         verified: 1.4.8
       dependencies:
       - name: com.unity.modules.director
@@ -3213,6 +3223,8 @@ m_PackageAssets:
         - 1.6.0
         - 1.7.0
         - 1.7.1
+        - 1.8.1
+        - 1.8.2
         compatible:
         - 1.0.1
         - 1.1.0-pre.7
@@ -3233,6 +3245,8 @@ m_PackageAssets:
         - 1.6.0
         - 1.7.0
         - 1.7.1
+        - 1.8.1
+        - 1.8.2
         verified: 1.4.3
       dependencies:
       - name: com.unity.modules.unitywebrequest
