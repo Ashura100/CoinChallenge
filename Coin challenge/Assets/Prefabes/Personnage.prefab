@@ -125,7 +125,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifeSystem: {fileID: 1276463023317317357}
-  jumpForce: 80
+  jumpForce: 100
   vitessePers: 200
   cam: {fileID: 0}
   rb: {fileID: 8713412228522767228}
@@ -136,7 +136,7 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 128
-  timeBetweenAttacks: 1
+  timeBetweenAttacks: 0.5
   attackPoint: {fileID: 8903613999449080445}
   attackRange: 2
   attackDamage: 20

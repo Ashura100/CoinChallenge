@@ -21,11 +21,6 @@ public class HealthBar : MonoBehaviour
 
     public void UpdateHealth()
     {
-        if (alife == null) 
-        {
-            Debug.Log("ialife n'est pas assigné");
-            return;
-        }
-        image.fillAmount = 0.5f;
+        image.fillAmount = lifeRate;
     }
 }
