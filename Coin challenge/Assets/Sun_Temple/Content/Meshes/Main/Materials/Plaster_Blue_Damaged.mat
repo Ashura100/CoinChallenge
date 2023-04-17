@@ -28,7 +28,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
-        m_Texture: {fileID: 2800000, guid: 2f331f63be217eb43a90590185f57030, type: 3}
+        m_Texture: {fileID: 2800000, guid: 28c37a39bf4ef6a449af8d887d977c3a, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailAlbedo:
@@ -64,7 +64,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: c5ee24b1e7ca472458323a1428742afe, type: 3}
+        m_Texture: {fileID: 2800000, guid: aa71ecac94f191a46a3a9d51cfc4f562, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -96,7 +96,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _layer1Tex:
-        m_Texture: {fileID: 2800000, guid: 8f2216e1f2b76d44eac28335cd000071, type: 3}
+        m_Texture: {fileID: 2800000, guid: 5ef2e8b86e0b1244b88b86e9013603a8, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
@@ -136,7 +136,7 @@ Material:
     - _layer1Smooth: 0
     - _layer1Tiling: 1
     m_Colors:
-    - _Color: {r: 0.24528301, g: 0.24528301, b: 0.24528301, a: 0.78431374}
+    - _Color: {r: 0.31132078, g: 0.31132078, b: 0.31132078, a: 0.78431374}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _GroundColor: {r: 0.36899996, g: 0.34899998, b: 0.34099993, a: 1}
     - _SkyTint: {r: 0.5, g: 0.5, b: 0.5, a: 1}

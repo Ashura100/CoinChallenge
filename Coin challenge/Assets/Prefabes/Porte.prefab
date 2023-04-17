@@ -176,7 +176,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Anim: {fileID: 560469144674905280}
   verrouiller: 0
-  PorteClip: {fileID: 0}
+  PorteClip: {fileID: 8300000, guid: 672583c80eec5ef45b4afa3bc0cdca66, type: 3}
 --- !u!82 &5213990336751614780
 AudioSource:
   m_ObjectHideFlags: 0
