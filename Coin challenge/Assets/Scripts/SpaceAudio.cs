@@ -9,9 +9,16 @@ public class SpaceAudio : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "Player")
+        if(other.CompareTag ("Player"))
         {
             AudioManager.playMusic(audioClip);
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if(other.CompareTag("Player"))
+        {
+            AudioManager.playMusic();
         }
     }
 }

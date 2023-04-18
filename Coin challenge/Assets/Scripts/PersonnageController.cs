@@ -28,6 +28,8 @@ public class PersonnageController : MonoBehaviour
     [SerializeField]
     public LayerMask enemyLayer;
 
+    float currentSpeed;
+
     public float timeBetweenAttacks;
     float lastAttackTime;
     bool canAttack
@@ -62,9 +64,19 @@ public class PersonnageController : MonoBehaviour
         direction = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical"));
         direction = direction.normalized;
 
-        if (direction.magnitude > 0.1f) MovePlayer();
+        if (direction.magnitude > 0.1f) 
+        {
+            MovePlayer();
+            currentSpeed += Time.deltaTime * 5f;
+        }
+        else
+        {
+            currentSpeed -= Time.deltaTime * 5f;
+        }
 
-        animator.SetBool("IsRunning", direction.magnitude > 0.1f);
+        currentSpeed = Mathf.Clamp(currentSpeed, 0, 1);
+
+        animator.SetFloat("Speed", currentSpeed);
         //MovePlayerCamera();
         bool _isGrounded = IsGrounded();
         if (Input.GetKeyDown(KeyCode.Space) && _isGrounded)
@@ -99,17 +111,22 @@ public class PersonnageController : MonoBehaviour
     {
         if (!alreadyAttacked)
         {
-            animator.SetTrigger("IsAttacking");
-            alreadyAttacked = true;
-            Invoke(nameof(ArretAttaque), timeBetweenAttacks);
-            Collider[] hitEnemis = Physics.OverlapSphere(attackPoint.position, attackRange, enemyLayer);
-            foreach (Collider enemy in hitEnemis)
-            {
-                lastAttackTime = Time.timeSinceLevelLoad;
-                Debug.Log("enemmie touché");
-                enemy.GetComponent<LifeSystem>().TakeDamage(attackDamage);
-                
-            }
+            StartCoroutine(timeCourout());
+        }
+    }
+
+    IEnumerator timeCourout()
+    {
+        animator.SetTrigger("IsAttacking");
+        alreadyAttacked = true;
+        yield return new WaitForSeconds(0.8f);
+        Invoke(nameof(ArretAttaque), timeBetweenAttacks);
+        Collider[] hitEnemis = Physics.OverlapSphere(attackPoint.position, attackRange, enemyLayer);
+        foreach (Collider enemy in hitEnemis)
+        {
+            lastAttackTime = Time.timeSinceLevelLoad;
+            enemy.GetComponent<LifeSystem>().TakeDamage(attackDamage);
+
         }
     }
     void ArretAttaque()
@@ -127,7 +144,13 @@ public class PersonnageController : MonoBehaviour
     void OnDie()
     {
         animator.SetTrigger("IsDying");
-        SceneManager.LoadScene("GameOver");
         lifeSystem.onDieDel -= OnDie;
+        StartCoroutine(waitForDeath());
+    }
+
+    IEnumerator waitForDeath()
+    {
+        yield return new WaitForSeconds(3f);
+        SceneManager.LoadScene("GameOver");
     }
 }

@@ -6,7 +6,27 @@ ModelImporter:
   - first:
       74: -203655887218126122
     second: mixamo.com
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Paladin_MAT
+    second: {fileID: 2100000, guid: 30249a99618423e459d3514378f55b83, type: 2}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Paladin_diffuse
+    second: {fileID: 2800000, guid: 7dd1aabe32bcca04b849e6058be7f81c, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Paladin_normal
+    second: {fileID: 2800000, guid: 9574617418d26c64abc60d624c657067, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Paladin_specular
+    second: {fileID: 2800000, guid: bbb066245cdce6b42a255549dc4445a1, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0
