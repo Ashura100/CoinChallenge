@@ -35,6 +35,8 @@ public class Ghoul : MonoBehaviour, Ilockable
 
     public float health;
 
+    ParticleSystem ps;
+
     public Transform focusPoint
     {
         get
@@ -139,6 +141,13 @@ public class Ghoul : MonoBehaviour, Ilockable
     void Die()
     {
         anim.SetTrigger("IsDying");
+        ps.Play();
+        StartCoroutine(waitForDeath());
+    }
+
+    IEnumerator waitForDeath()
+    {
+        yield return new WaitForSeconds(2f);
         Destroy(gameObject);
     }
 

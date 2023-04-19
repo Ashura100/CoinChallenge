@@ -28,7 +28,9 @@ public class PersonnageController : MonoBehaviour
     [SerializeField]
     public LayerMask enemyLayer;
 
+    float currentWalk;
     float currentSpeed;
+    float currentAttack;
 
     public float timeBetweenAttacks;
     float lastAttackTime;
@@ -60,7 +62,6 @@ public class PersonnageController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //transform.LookAt(target, Vector3.up);
         direction = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical"));
         direction = direction.normalized;
 
@@ -74,9 +75,12 @@ public class PersonnageController : MonoBehaviour
             currentSpeed -= Time.deltaTime * 5f;
         }
 
-        currentSpeed = Mathf.Clamp(currentSpeed, 0, 1);
+        currentSpeed = Mathf.Clamp(currentSpeed, 0, 2);
+
+        currentAttack = Mathf.Clamp(currentAttack, 1, 0);
 
         animator.SetFloat("Speed", currentSpeed);
+        
         //MovePlayerCamera();
         bool _isGrounded = IsGrounded();
         if (Input.GetKeyDown(KeyCode.Space) && _isGrounded)
@@ -117,7 +121,7 @@ public class PersonnageController : MonoBehaviour
 
     IEnumerator timeCourout()
     {
-        animator.SetTrigger("IsAttacking");
+        animator.SetFloat("Attack", currentAttack);
         alreadyAttacked = true;
         yield return new WaitForSeconds(0.8f);
         Invoke(nameof(ArretAttaque), timeBetweenAttacks);
@@ -150,7 +154,7 @@ public class PersonnageController : MonoBehaviour
 
     IEnumerator waitForDeath()
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(4f);
         SceneManager.LoadScene("GameOver");
     }
 }
