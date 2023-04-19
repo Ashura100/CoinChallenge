@@ -141,14 +141,15 @@ public class Ghoul : MonoBehaviour, Ilockable
     void Die()
     {
         anim.SetTrigger("IsDying");
-        ps.Play();
-        StartCoroutine(waitForDeath());
+        StartCoroutine(waitForDeath());   
     }
 
     IEnumerator waitForDeath()
     {
         yield return new WaitForSeconds(2f);
         Destroy(gameObject);
+        ps.Play();
+
     }
 
     public void OnFocus()
