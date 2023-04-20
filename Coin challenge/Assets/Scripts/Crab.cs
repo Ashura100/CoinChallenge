@@ -35,6 +35,8 @@ public class Crab : MonoBehaviour, Ilockable
 
     public float health;
 
+    ParticleSystem ps;
+
     public Transform focusPoint
     {
         get
@@ -148,9 +150,16 @@ public class Crab : MonoBehaviour, Ilockable
     void Die()
     {
         anim.SetTrigger("IsDying");
-        Destroy(gameObject);
+        StartCoroutine(waitForDeath());
     }
 
+    IEnumerator waitForDeath()
+    {
+        yield return new WaitForSeconds(2f);
+        Destroy(gameObject);
+        ps.Play();
+
+    }
     public void OnFocus()
     {
         throw new System.NotImplementedException();
