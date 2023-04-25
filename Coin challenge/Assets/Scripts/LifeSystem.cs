@@ -27,6 +27,14 @@ public class LifeSystem : MonoBehaviour, IAlife
         }
     }
 
+    public bool isAlife
+    {
+        get
+        {
+            return health > 0;
+        }
+    }
+
     void Start()
     {
         healthbar.Init(this);
@@ -52,6 +60,10 @@ public class LifeSystem : MonoBehaviour, IAlife
 
 public interface IAlife
 {
+    bool isAlife
+    {
+        get;
+    }
     int maxHealth
     {
         get;

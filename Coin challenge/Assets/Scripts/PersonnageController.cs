@@ -62,6 +62,11 @@ public class PersonnageController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!lifeSystem.isAlife)
+        {
+            return;
+        }
+
         direction = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical"));
         direction = direction.normalized;
 

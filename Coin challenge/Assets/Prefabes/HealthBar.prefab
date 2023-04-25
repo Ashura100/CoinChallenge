@@ -200,6 +200,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 6387580021417463614}
+  focusCam: 0
 --- !u!1 &8564773534809817464
 GameObject:
   m_ObjectHideFlags: 0

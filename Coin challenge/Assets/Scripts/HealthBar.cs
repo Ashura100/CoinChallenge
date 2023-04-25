@@ -7,6 +7,9 @@ public class HealthBar : MonoBehaviour
 {
     public Image image;
     IAlife alife;
+    Transform camTransform;
+    [SerializeField]
+    bool focusCam = true;
     float lifeRate
     {
         get
@@ -16,9 +19,14 @@ public class HealthBar : MonoBehaviour
     }
     public void Init(IAlife alife)
     {
+        camTransform = Camera.main.transform;
         this.alife = alife;
     }
-
+    void LateUpdate()
+    {
+        if (!focusCam) return;
+        transform.LookAt(camTransform);  
+    }
     public void UpdateHealth()
     {
         image.fillAmount = lifeRate;

@@ -811,6 +811,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8647139960642993784, guid: 227ee07e9e5b7914ba8fbb8f430be9a5, type: 3}
+      propertyPath: focusCam
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 227ee07e9e5b7914ba8fbb8f430be9a5, type: 3}
 --- !u!4 &6079061224562406716 stripped
