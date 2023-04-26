@@ -8,20 +8,22 @@ public class ButtonController : MonoBehaviour
     public string levelToLoad;
 
     public GameObject Parametre;
+    //fonction du bouton jouer lance la scene EnterScene en chargeant la scene
     public void JouerButton()
     {
         SceneManager.LoadScene(levelToLoad);
     }
-
+    //fonction du bouton option active le canvas paramètre
     public void OptionButton()
     {
         Parametre.SetActive(true);
     }
-
+    //fonction du bouton quitter option désactive le canvas paramètre
     public void QuitterReglageMenu()
     {
         Parametre.SetActive(false);
     }
+    //fonction quitter, quitte le jeu
     public void Exit()
     {
         if (Application.isEditor)//jeu tourne dans l'editeur

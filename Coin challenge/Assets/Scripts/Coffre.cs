@@ -20,13 +20,13 @@ public class Coffre : MonoBehaviour, Iinteractable
             return !Anim.GetBool("OuvrirCoffre");
         }
     }
-
+    //fonction permettant d'activer l'animation du coffre et l'audio d'ouverture
     void OpenChest()
     {
         Anim.SetBool("OuvrirCoffre", true);
         AudioSource.PlayClipAtPoint(CoffreClip, transform.position);
     }
-
+    //une fois sortie de la zone du collider désactive le texte d'interaction et la zone d'interaction
     private void OnTriggerExit(Collider collision)
     {
         if (collision.CompareTag("Player"))

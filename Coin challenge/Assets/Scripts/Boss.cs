@@ -24,8 +24,16 @@ public class Boss : MonoBehaviour, Ilockable
     [SerializeField]
     float patrouilleSpeed, poursuiteSpeed = 1;
     //attaque
+    float lastAttackTime;
+    bool canAttack
+    {
+        get
+        {
+            if (Time.timeSinceLevelLoad - lastAttackTime < timeBetweenAttacks) return false;
+            return true;
+        }
+    }
     public float timeBetweenAttacks;
-    bool alreadyAttacked;
     //states
     public float sightRange, attackRange;
     public bool playerInSightRange, playerInAttackRange;
@@ -106,26 +114,27 @@ public class Boss : MonoBehaviour, Ilockable
 
     void Attaque()
     {
-        Debug.Log("attaque");
+        if (!canAttack) return;
+        StartCoroutine(AttackCourout());
+        lastAttackTime = Time.timeSinceLevelLoad;
+    }
+    IEnumerator AttackCourout()
+    {
         _navMeshAgent.SetDestination(transform.position);
 
         transform.LookAt(player);
 
-        if (!alreadyAttacked)
+        anim.SetFloat("Attack", 1);
+        Debug.Log("attaque");
+        Collider[] hitEnemis = Physics.OverlapSphere(attackPoint.position, attackRange, playerMask);
+        foreach (Collider enemy in hitEnemis)
         {
-            anim.SetTrigger("IsAttacking");
-            alreadyAttacked = true;
-            Invoke(nameof(ArretAttaque), timeBetweenAttacks);
-            Collider[] hitEnemis = Physics.OverlapSphere(attackPoint.position, attackRange, playerMask);
-            foreach (Collider enemy in hitEnemis)
-            {
-                player.GetComponent<LifeSystem>().TakeDamage(attackDamage);
-            }
+            player.GetComponent<LifeSystem>().TakeDamage(attackDamage);
         }
-    }
-    void ArretAttaque()
-    {
-        alreadyAttacked = false;
+
+        yield return new WaitForSeconds(2f);
+        //anim.SetFloat("Attack", 0);
+
     }
 
     public void TakeDamage(int damage)

@@ -17,7 +17,7 @@ public class PlateformeMouve : MonoBehaviour
         
     }
 
-    // Update is called once per frame
+    //permet de déplacer la plateforme en fonction de la position du point A et B
     void Update()
     {
         float t = Mathf.InverseLerp(-1, 1, Mathf.Sin(Time.timeSinceLevelLoad*vitesse));

@@ -5,11 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class GameOver : MonoBehaviour
 {
-
+    //charge la scene choisis 
     public void chargerScene(string nomScene)
     {
         SceneManager.LoadScene(nomScene);
     }
+    //quitte le jeu
     public void Exit()
     {
         if (Application.isEditor)//jeu tourne dans l'editeur

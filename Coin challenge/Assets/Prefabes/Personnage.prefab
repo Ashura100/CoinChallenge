@@ -210,7 +210,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e410dc5e10940844e9bcd8afd9fed968, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lockRange: 25
+  lockRange: 30
   lockMask:
     serializedVersion: 2
     m_Bits: 128

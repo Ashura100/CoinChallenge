@@ -8,6 +8,7 @@ public class Checkpoint : MonoBehaviour
     {
 
     }
+    //zone dans laquelle respawn le joueur
     private void OnTriggerEnter(Collider collision)
     {
         if (collision.CompareTag("Player"))

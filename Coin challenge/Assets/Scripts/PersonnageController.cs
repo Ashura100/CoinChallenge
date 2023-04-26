@@ -82,8 +82,6 @@ public class PersonnageController : MonoBehaviour
 
         currentSpeed = Mathf.Clamp(currentSpeed, 0, 2);
 
-        currentAttack = Mathf.Clamp(currentAttack, 1, 0);
-
         animator.SetFloat("Speed", currentSpeed);
         
         //MovePlayerCamera();
@@ -126,7 +124,7 @@ public class PersonnageController : MonoBehaviour
 
     IEnumerator timeCourout()
     {
-        animator.SetFloat("Attack", currentAttack);
+        animator.SetFloat("Attack", 1);
         alreadyAttacked = true;
         yield return new WaitForSeconds(0.8f);
         Invoke(nameof(ArretAttaque), timeBetweenAttacks);
@@ -147,6 +145,7 @@ public class PersonnageController : MonoBehaviour
     {
         health -= damage;
         lifeSystem.healthbar.UpdateHealth();
+        animator.SetTrigger("AsDamage");
         if (health < 0) Invoke(nameof(OnDie), 5f);
         
     }

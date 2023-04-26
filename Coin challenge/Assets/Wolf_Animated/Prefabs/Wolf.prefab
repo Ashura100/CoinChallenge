@@ -1754,6 +1754,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8564773533353151243, guid: 1fad3a2b5204c684ba8f833881595411, type: 3}
+      propertyPath: focusCam
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8564773533353151476, guid: 1fad3a2b5204c684ba8f833881595411, type: 3}
       propertyPath: m_Name
       value: HealthBar

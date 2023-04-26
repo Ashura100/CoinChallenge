@@ -19,6 +19,7 @@ public class ScoreManager : MonoBehaviour
     {
         instance = this;
     }
+    //affiche le score, highscore et clées en début de jeu
     void Start()
     {
         highScore = PlayerPrefs.GetInt("highscore", 0);
@@ -27,7 +28,7 @@ public class ScoreManager : MonoBehaviour
         keyNumberText.text = "Key Number " + key.ToString();
 
     }
-
+    //met à jour les points des pièces en fonction de leur valeur
     public void AddCoins(int coinValue)
     {
         score += coinValue;
@@ -38,7 +39,7 @@ public class ScoreManager : MonoBehaviour
         }
         //PlayerPrefs.SetInt("highscore", score);
     }
-
+    //met à jour le nombre de clée
     public void AddKeys()
     {
         key += 1;

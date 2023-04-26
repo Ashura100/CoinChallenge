@@ -21,7 +21,7 @@ public class Timer : MonoBehaviour
         remainingDuration = Second;
         StartCoroutine(UpdateTimer());
     }
-
+    //coroutine qui met à jour le décompte du temps et appelle la fonction OnEnd
     IEnumerator UpdateTimer()
     {
         while(remainingDuration >= 0)
@@ -33,7 +33,7 @@ public class Timer : MonoBehaviour
         }
         OnEnd();
     }
-
+    //charge la scene gameover une fois la fonction appelée
     void OnEnd()
     {
         print ("Fin");

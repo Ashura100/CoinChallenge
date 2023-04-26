@@ -36,14 +36,14 @@ public class Ascenseur : MonoBehaviour
     {
 
     }
-    
+    //Fonction GoEtage met en marche la coroutine et affiche le numéro de l'étage dans la console
     public void GoEtage(int numEtage)
     {
         if (corout != null) return;
         Debug.Log("GoEtage" + numEtage);
         corout = StartCoroutine(GoEtageCorout(numEtage));
     }
-    // Update is called once per frame
+    //Coroutine GoEtage permet de déplacer la plateforme en fonction de la liste d'étage choisis grâce à leurs position 
     IEnumerator GoEtageCorout(int numEtage)
     {
         float positionDepart = positionActuelle;
@@ -66,6 +66,8 @@ public class Ascenseur : MonoBehaviour
         PersonnageController.instance.rb.isKinematic = false;
         corout = null;
     }
+
+    //permet d'établir dans l'inspector le nombre d'étage et leur position, T correspondant à la position des étages
     [System.Serializable]
     public class EtageInfos
     {
