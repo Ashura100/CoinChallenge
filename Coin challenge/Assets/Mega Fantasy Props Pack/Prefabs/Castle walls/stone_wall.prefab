@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 458024}
   - component: {fileID: 3333348}
   - component: {fileID: 2334148}
-  - component: {fileID: 8830066470950055217}
+  - component: {fileID: 7234583780958078586}
   m_Layer: 0
   m_Name: stone_wall
   m_TagString: Untagged
@@ -82,7 +82,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &8830066470950055217
+--- !u!65 &7234583780958078586
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -93,5 +93,5 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 6, y: 6, z: 3}
-  m_Center: {x: -2.999996, y: 3, z: -0.000030517578}
+  m_Size: {x: 6.000002, y: 6.0000005, z: 3}
+  m_Center: {x: -3.0000024, y: 2.9999993, z: -0.00010681152}
