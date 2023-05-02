@@ -57,7 +57,8 @@ public class Ghoul : MonoBehaviour, Ilockable
     {
         get
         {
-            return true;
+            if (this == null) return false;
+            return lifeSystem.isAlife;
         }
     }
 
@@ -89,7 +90,7 @@ public class Ghoul : MonoBehaviour, Ilockable
             _navMeshAgent.SetDestination(walkPoint);
 
         Vector3 distanceToWalkPoint = transform.position - walkPoint;
-        anim.SetBool("IsMoving", true);
+        anim.SetFloat("Velocity", 0);
         _navMeshAgent.speed = patrouilleSpeed;
 
         if (distanceToWalkPoint.magnitude < 1f)
@@ -127,7 +128,7 @@ public class Ghoul : MonoBehaviour, Ilockable
 
         transform.LookAt(player);
 
-        anim.SetFloat("Attack", 1);
+        anim.SetBool("Attack", true);
         Debug.Log("attaque");
         Collider[] hitEnemis = Physics.OverlapSphere(attackPoint.position, attackRange, playerMask);
         foreach (Collider enemy in hitEnemis)
@@ -136,7 +137,7 @@ public class Ghoul : MonoBehaviour, Ilockable
         }
 
         yield return new WaitForSeconds(2f);
-        //anim.SetFloat("Attack", 0);
+        anim.SetBool("Attack", false);
 
     }
 

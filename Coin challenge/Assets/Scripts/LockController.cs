@@ -19,7 +19,7 @@ public class LockController : MonoBehaviour
     
     void Update()
     {
-        if (target != null)
+        if (target != null && target.isFocusable)
         {
             playerTransform.LookAt(target.focusPoint);
         }

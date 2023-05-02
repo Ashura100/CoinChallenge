@@ -57,7 +57,7 @@ public class Ascenseur : MonoBehaviour
         while (t < 1.1f) 
         {
             t += Time.deltaTime * vitesse * DeltaT;
-            float tBis = Mathf.Lerp(positionDepart, positionCible, t);
+            float tBis = Mathf.Lerp(positionDepart, positionCible, t);//interpoler les positions entre Aet B en fonction de t
             Vector3 position = Vector3.Lerp(A.position, B.position, tBis);
             rigidBody.MovePosition(position);
             yield return null;

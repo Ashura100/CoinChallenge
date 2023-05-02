@@ -13,7 +13,7 @@ public class ScoreManager : MonoBehaviour
 
     int score = 0;
     int highScore = 0;
-    int key = 0;
+    public int key = 0;
     // Start is called before the first frame update
     private void Awake()
     {

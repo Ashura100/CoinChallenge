@@ -57,7 +57,8 @@ public class Crab : MonoBehaviour, Ilockable
     {
         get
         {
-            return true;
+            if(this == null) return false;
+            return lifeSystem.isAlife;
         }
     }
     void Awake()

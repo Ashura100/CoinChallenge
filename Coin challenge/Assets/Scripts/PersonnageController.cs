@@ -30,7 +30,7 @@ public class PersonnageController : MonoBehaviour
 
     float currentWalk;
     float currentSpeed;
-    float currentAttack;
+    float jumpheight;
 
     public float timeBetweenAttacks;
     float lastAttackTime;
@@ -73,7 +73,7 @@ public class PersonnageController : MonoBehaviour
         if (direction.magnitude > 0.1f) 
         {
             MovePlayer();
-            currentSpeed += Time.deltaTime * 5f;
+            currentSpeed += Time.deltaTime * 1f;
         }
         else
         {
@@ -88,10 +88,15 @@ public class PersonnageController : MonoBehaviour
         bool _isGrounded = IsGrounded();
         if (Input.GetKeyDown(KeyCode.Space) && _isGrounded)
         {
-            animator.SetBool("IsJumping", jumpForce > 0.1f);
+            jumpheight = 2;
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
         }
-
+        else if(!_isGrounded)
+        {
+            jumpheight -= Time.deltaTime * 3f;
+        }
+        jumpheight = Mathf.Clamp(jumpheight, 0, 1);
+        animator.SetFloat("Jump", jumpheight);
         if (Input.GetMouseButtonDown(0))
         {
             Attack();
@@ -124,9 +129,10 @@ public class PersonnageController : MonoBehaviour
 
     IEnumerator timeCourout()
     {
-        animator.SetFloat("Attack", 1);
+        animator.SetBool("Attack", true);
         alreadyAttacked = true;
         yield return new WaitForSeconds(0.8f);
+        animator.SetBool("Attack", false);
         Invoke(nameof(ArretAttaque), timeBetweenAttacks);
         Collider[] hitEnemis = Physics.OverlapSphere(attackPoint.position, attackRange, enemyLayer);
         foreach (Collider enemy in hitEnemis)

@@ -23,13 +23,10 @@ public class Porte : MonoBehaviour
     {
         if (verrouiller)
         {
-            key.keyNumberText.ToString();
+            if (key.key < 1)
+                return;
             Anim.Play("PorteOuv");
             porte_AudioSource.PlayOneShot(PorteClip);
-        }
-        else
-        {
-            return;
         }
             
 
