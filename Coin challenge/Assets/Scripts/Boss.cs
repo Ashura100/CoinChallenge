@@ -72,6 +72,11 @@ public class Boss : MonoBehaviour, Ilockable
 
     void FixedUpdate()
     {
+        if (!lifeSystem.isAlife)
+        {
+            return;
+        }
+
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, playerMask); Debug.Log(playerInSightRange);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, playerMask);
 

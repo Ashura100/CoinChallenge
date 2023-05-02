@@ -73,7 +73,7 @@ public class PersonnageController : MonoBehaviour
         if (direction.magnitude > 0.1f) 
         {
             MovePlayer();
-            currentSpeed += Time.deltaTime * 1f;
+            currentSpeed += Time.deltaTime * 2f;
         }
         else
         {

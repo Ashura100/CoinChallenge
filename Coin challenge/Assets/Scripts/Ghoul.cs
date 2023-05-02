@@ -71,9 +71,13 @@ public class Ghoul : MonoBehaviour, Ilockable
         zombie_AudioSource = GetComponent<AudioSource>();
         zombie_AudioSource.PlayOneShot(audioClip);
     }
-
     void FixedUpdate()
     {
+        if (!lifeSystem.isAlife)
+        {
+            return;
+        }
+
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, playerMask); Debug.Log(playerInSightRange);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, playerMask);
 

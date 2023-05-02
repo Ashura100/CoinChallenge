@@ -64,13 +64,13 @@ MonoBehaviour:
   walkPointRange: 10
   patrouilleSpeed: 5
   poursuiteSpeed: 15
-  timeBetweenAttacks: 2
+  timeBetweenAttacks: 1
   sightRange: 20
-  attackRange: 1
+  attackRange: 10
   playerInSightRange: 0
   playerInAttackRange: 0
   attackPoint: {fileID: 3185384954611248986}
-  attackDamage: 10
+  attackDamage: 1
   health: 100
 --- !u!195 &6076190011266132839
 NavMeshAgent:
