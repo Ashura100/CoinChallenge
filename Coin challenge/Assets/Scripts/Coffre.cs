@@ -13,6 +13,8 @@ public class Coffre : MonoBehaviour, Iinteractable
     [SerializeField]
     private AudioClip CoffreClip = null;
 
+    public SpawnChest spawnChest;
+
     public bool isInteractable
     {
         get
@@ -51,7 +53,7 @@ public class Coffre : MonoBehaviour, Iinteractable
     IEnumerator Interactcouroute(GameObject player)
     {
         interactUI.enabled = true;
-        while (Vector3.Distance(transform.position, player.transform.position) < 5f)
+        while (Vector3.Distance(transform.position, player.transform.position) < 7f)
         {
             Debug.Log("while");
             if (Input.GetKeyDown(KeyCode.E))
