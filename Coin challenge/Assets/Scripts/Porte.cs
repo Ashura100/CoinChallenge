@@ -18,19 +18,21 @@ public class Porte : MonoBehaviour
         key = FindObjectOfType<ScoreManager>();
         porte_AudioSource = GetComponent<AudioSource>();
     }
-
+    //dès que le player rentre dans la box collider, detecte si le joueur comptabilise une clé pour qu'elle s'ouvre si verrouiller 
     void OnTriggerEnter()
     {
         if (verrouiller)
         {
             if (key.key < 1)
                 return;
-            Anim.Play("PorteOuv");
-            porte_AudioSource.PlayOneShot(PorteClip);
+            ScoreManager.instance.RemoveKey();
+            verrouiller = false;
         }
-            
+        Anim.Play("PorteOuv");
+        porte_AudioSource.PlayOneShot(PorteClip);
 
-        
+
+
     }
 
     void OnTriggerExit()

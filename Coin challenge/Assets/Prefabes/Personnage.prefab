@@ -111,8 +111,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifeSystem: {fileID: 1276463023317317357}
-  jumpForce: 100
-  vitessePers: 200
+  jumpForce: 500
+  vitessePers: 100
   cam: {fileID: 0}
   rb: {fileID: 8713412228522767228}
   animator: {fileID: 5653164912946916731}

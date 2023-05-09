@@ -21,10 +21,15 @@ public class Coffre : MonoBehaviour, Iinteractable
         {
             return !Anim.GetBool("OuvrirCoffre");
         }
+        set
+        {
+
+        }
     }
     //fonction permettant d'activer l'animation du coffre et l'audio d'ouverture
     void OpenChest()
     {
+        spawnChest.mouveItems();
         Anim.SetBool("OuvrirCoffre", true);
         AudioSource.PlayClipAtPoint(CoffreClip, transform.position);
     }
@@ -37,7 +42,7 @@ public class Coffre : MonoBehaviour, Iinteractable
             isInRange = false;
         }
     }
-
+    //fonction d'interaction qui fait appel à la couroutine quand le joueur est bien dans le périmètre du coffre
     public void Interact(GameObject gameInteraction)
     {
         if (gameInteraction.CompareTag("Player"))
@@ -49,11 +54,11 @@ public class Coffre : MonoBehaviour, Iinteractable
 
         }
     }
-
+    //Fait appel à l'ouverture du coffre en fonction de la distance du joueur 
     IEnumerator Interactcouroute(GameObject player)
     {
         interactUI.enabled = true;
-        while (Vector3.Distance(transform.position, player.transform.position) < 7f)
+        while (Vector3.Distance(transform.position, player.transform.position) < 10f)
         {
             Debug.Log("while");
             if (Input.GetKeyDown(KeyCode.E))

@@ -42,7 +42,6 @@ public class PersonnageController : MonoBehaviour
             return true;
         }
     }
-    bool alreadyAttacked;
     [SerializeField]
     Transform attackPoint;
     public float attackRange = 0.5f;
@@ -56,6 +55,7 @@ public class PersonnageController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Physics.gravity = new Vector3(0, -9.81f * 5, 0);
         lifeSystem.onDieDel = OnDie;
     }
 
@@ -83,20 +83,18 @@ public class PersonnageController : MonoBehaviour
         currentSpeed = Mathf.Clamp(currentSpeed, 0, 2);
 
         animator.SetFloat("Speed", currentSpeed);
-        
+
         //MovePlayerCamera();
+        
         bool _isGrounded = IsGrounded();
         if (Input.GetKeyDown(KeyCode.Space) && _isGrounded)
         {
-            jumpheight = 2;
+
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
         }
-        else if(!_isGrounded)
-        {
-            jumpheight -= Time.deltaTime * 3f;
-        }
-        jumpheight = Mathf.Clamp(jumpheight, 0, 1);
-        animator.SetFloat("Jump", jumpheight);
+
+        animator.SetBool("Jump", !_isGrounded);
+
         if (Input.GetMouseButtonDown(0))
         {
             Attack();
@@ -121,19 +119,16 @@ public class PersonnageController : MonoBehaviour
 
     public void Attack()
     {
-        if (!alreadyAttacked)
-        {
-            StartCoroutine(timeCourout());
-        }
+        if (!canAttack) return;
+        StartCoroutine(timeCourout());
+        lastAttackTime = Time.timeSinceLevelLoad;
     }
 
     IEnumerator timeCourout()
     {
         animator.SetBool("Attack", true);
-        alreadyAttacked = true;
         yield return new WaitForSeconds(0.8f);
         animator.SetBool("Attack", false);
-        Invoke(nameof(ArretAttaque), timeBetweenAttacks);
         Collider[] hitEnemis = Physics.OverlapSphere(attackPoint.position, attackRange, enemyLayer);
         foreach (Collider enemy in hitEnemis)
         {
@@ -141,10 +136,6 @@ public class PersonnageController : MonoBehaviour
             enemy.GetComponent<LifeSystem>().TakeDamage(attackDamage);
 
         }
-    }
-    void ArretAttaque()
-    {
-        alreadyAttacked = false;
     }
 
     public void TakeDamage(int damage)

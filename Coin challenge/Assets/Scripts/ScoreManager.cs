@@ -45,4 +45,10 @@ public class ScoreManager : MonoBehaviour
         key += 1;
         keyNumberText.text = "Key Number " + key.ToString();
     }
+
+    public void RemoveKey()
+    {
+        key -= 1;
+        keyNumberText.text = "Key Number " + key.ToString();
+    }
 }

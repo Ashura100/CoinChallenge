@@ -8,12 +8,17 @@ public class Coin : MonoBehaviour, Iinteractable
     public int coinValue;
     [SerializeField]
     private AudioClip CoinCollect = null;
-
+    [SerializeField]
+    bool canBeCollected = true;
     public bool isInteractable
     {
         get
         {
             return true;
+        }
+        set
+        {
+            canBeCollected = value;
         }
     }
 

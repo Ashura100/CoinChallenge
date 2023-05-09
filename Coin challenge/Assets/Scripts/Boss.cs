@@ -42,7 +42,7 @@ public class Boss : MonoBehaviour, Ilockable
     public int attackDamage = 20;
 
     public float health;
-
+    //permet de lock l'énnemis
     public Transform focusPoint
     {
         get
@@ -50,7 +50,7 @@ public class Boss : MonoBehaviour, Ilockable
             return transform;
         }
     }
-
+    //désactive le lock une fois l'énnemis mort 
     public bool isFocusable
     {
         get
@@ -85,6 +85,7 @@ public class Boss : MonoBehaviour, Ilockable
         if (playerInSightRange && playerInAttackRange) Attaque();
 
     }
+    //fonction qui permet aux ennemis de patrouiller de leur position à celle établie
     void Patrouille()
     {
         if (!walkPointSet) SearchWalkPoint();
@@ -99,7 +100,7 @@ public class Boss : MonoBehaviour, Ilockable
         if (distanceToWalkPoint.magnitude < 1f)
             walkPointSet = false;
     }
-
+    
     void SearchWalkPoint()
     {
         float randomZ = Random.Range(-walkPointRange, walkPointRange);
@@ -110,6 +111,7 @@ public class Boss : MonoBehaviour, Ilockable
         if (Physics.Raycast(walkPoint, -transform.up, 2f, groundMask))
             walkPointSet = true;
     }
+    //fonction poursuite focus l'ennemis sur le player dès qu'il rentre dans son périmètre
     void Poursuite()
     {
         Debug.Log("poursuit");
@@ -117,13 +119,14 @@ public class Boss : MonoBehaviour, Ilockable
         _navMeshAgent.SetDestination(player.position);
         _navMeshAgent.speed = poursuiteSpeed;
     }
-
+    //fonction attack fait appel à la couroutine si il peut attaquer
     void Attaque()
     {
         if (!canAttack) return;
         StartCoroutine(AttackCourout());
         lastAttackTime = Time.timeSinceLevelLoad;
     }
+    //couroutine attack gère l'attaque des ennemis et met à jour la barre de vie du joueur en fonction des dégât qu'il prend 
     IEnumerator AttackCourout()
     {
         _navMeshAgent.SetDestination(transform.position);
@@ -142,7 +145,7 @@ public class Boss : MonoBehaviour, Ilockable
         anim.SetBool("Attack", false);
 
     }
-
+    //met à jour les dégâts prient et la bar de vie
     public void TakeDamage(int damage)
     {
         health -= damage;
@@ -150,7 +153,7 @@ public class Boss : MonoBehaviour, Ilockable
         if (health < 0) Invoke(nameof(Die), 5f);
 
     }
-
+    //active l'animation mort et détruit l'ennemis
     void Die()
     {
         anim.SetTrigger("IsDying");
