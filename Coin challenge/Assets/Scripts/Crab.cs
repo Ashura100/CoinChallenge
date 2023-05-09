@@ -174,7 +174,6 @@ public class Crab : MonoBehaviour, Ilockable
     {
         yield return new WaitForSeconds(2f);
         Destroy(gameObject);
-        ps.Play();
 
     }
     public void OnFocus()

@@ -130,10 +130,10 @@ public class PersonnageController : MonoBehaviour
         yield return new WaitForSeconds(0.8f);
         animator.SetBool("Attack", false);
         Collider[] hitEnemis = Physics.OverlapSphere(attackPoint.position, attackRange, enemyLayer);
-        foreach (Collider enemy in hitEnemis)
+        foreach (Collider Enemy in hitEnemis)
         {
             lastAttackTime = Time.timeSinceLevelLoad;
-            enemy.GetComponent<LifeSystem>().TakeDamage(attackDamage);
+            Enemy.GetComponent<LifeSystem>().TakeDamage(attackDamage);
 
         }
     }

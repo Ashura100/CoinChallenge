@@ -135,7 +135,7 @@ public class Ghoul : MonoBehaviour, Ilockable
         anim.SetBool("Attack", true);
         Debug.Log("attaque");
         Collider[] hitEnemis = Physics.OverlapSphere(attackPoint.position, attackRange, playerMask);
-        foreach (Collider enemy in hitEnemis)
+        foreach (Collider Enemy in hitEnemis)
         {
             player.GetComponent<LifeSystem>().TakeDamage(attackDamage);
         }
@@ -163,7 +163,6 @@ public class Ghoul : MonoBehaviour, Ilockable
     {
         yield return new WaitForSeconds(2f);
         Destroy(gameObject);
-        ps.Play();
 
     }
 
