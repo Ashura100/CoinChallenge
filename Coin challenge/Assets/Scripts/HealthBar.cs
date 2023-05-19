@@ -27,6 +27,7 @@ public class HealthBar : MonoBehaviour
         if (!focusCam) return;
         transform.LookAt(camTransform);  
     }
+    //met à jour le sprite de la barre de vie
     public void UpdateHealth()
     {
         image.fillAmount = lifeRate;

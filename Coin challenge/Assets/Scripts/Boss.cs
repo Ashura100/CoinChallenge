@@ -69,7 +69,7 @@ public class Boss : MonoBehaviour, Ilockable
         zombie_AudioSource = GetComponent<AudioSource>();
         zombie_AudioSource.PlayOneShot(audioClip);
     }
-
+    //fonction plus adapté quand on utilise un rigidbody
     void FixedUpdate()
     {
         if (!lifeSystem.isAlife)
@@ -77,7 +77,7 @@ public class Boss : MonoBehaviour, Ilockable
             return;
         }
 
-        playerInSightRange = Physics.CheckSphere(transform.position, sightRange, playerMask); Debug.Log(playerInSightRange);
+        playerInSightRange = Physics.CheckSphere(transform.position, sightRange, playerMask);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, playerMask);
 
         if (!playerInSightRange && !playerInAttackRange) Patrouille();
@@ -94,7 +94,7 @@ public class Boss : MonoBehaviour, Ilockable
             _navMeshAgent.SetDestination(walkPoint);
 
         Vector3 distanceToWalkPoint = transform.position - walkPoint;
-        anim.SetFloat("Velocity", 0);
+        anim.SetFloat("Velocity", 0.5f);
         _navMeshAgent.speed = patrouilleSpeed;
 
         if (distanceToWalkPoint.magnitude < 1f)
@@ -115,11 +115,11 @@ public class Boss : MonoBehaviour, Ilockable
     void Poursuite()
     {
         Debug.Log("poursuit");
-        anim.SetFloat("Velocity", 1);
+        anim.SetFloat("Velocity", 2);
         _navMeshAgent.SetDestination(player.position);
         _navMeshAgent.speed = poursuiteSpeed;
     }
-    //fonction attack fait appel à la couroutine si il peut attaquer
+    //fonction attack fait appel à la couroutine, si il peut attaquer
     void Attaque()
     {
         if (!canAttack) return;
@@ -145,7 +145,7 @@ public class Boss : MonoBehaviour, Ilockable
         anim.SetBool("Attack", false);
 
     }
-    //met à jour les dégâts prient et la bar de vie
+    //met à jour les dégâts prient et la barre de vie
     public void TakeDamage(int damage)
     {
         health -= damage;

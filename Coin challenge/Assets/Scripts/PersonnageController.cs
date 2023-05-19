@@ -16,7 +16,8 @@ public class PersonnageController : MonoBehaviour
     [SerializeField]
     float jumpForce;
     [SerializeField]
-    float vitessePers = 10;
+    public float vitessePers = 10;
+    float playerSpeedRate;
     [SerializeField]
     Camera cam;
     [SerializeField]
@@ -27,10 +28,7 @@ public class PersonnageController : MonoBehaviour
     private LayerMask groundMask;
     [SerializeField]
     public LayerMask enemyLayer;
-
-    float currentWalk;
-    float currentSpeed;
-    float jumpheight;
+    public Collider _col;
 
     public float timeBetweenAttacks;
     float lastAttackTime;
@@ -42,11 +40,13 @@ public class PersonnageController : MonoBehaviour
             return true;
         }
     }
+    bool alreadyAttacked = false;
     [SerializeField]
     Transform attackPoint;
     public float attackRange = 0.5f;
     public int attackDamage = 20;
     public int health = 100;
+    float _currentSpeed;
 
     void Awake()
     {
@@ -55,52 +55,51 @@ public class PersonnageController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Physics.gravity = new Vector3(0, -9.81f * 5, 0);
         lifeSystem.onDieDel = OnDie;
+        Physics.gravity = new Vector3(0, -9.81f * 5, 0);
     }
 
-    // Update is called once per frame
+    // Update is called once per frame 
     void Update()
     {
-        if (!lifeSystem.isAlife)
-        {
-            return;
-        }
-
+        //transform.LookAt(target, Vector3.up);
         direction = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical"));
         direction = direction.normalized;
 
-        if (direction.magnitude > 0.1f) 
+        if (direction.magnitude > 0.1f)
         {
             MovePlayer();
-            currentSpeed += Time.deltaTime * 2f;
+            _currentSpeed += Time.deltaTime * 5;
+            playerSpeedRate += Time.deltaTime*3f;
+
         }
         else
         {
-            currentSpeed -= Time.deltaTime * 5f;
+            _currentSpeed -= Time.deltaTime * 5f;
+            playerSpeedRate -= Time.deltaTime*5f;
         }
 
-        currentSpeed = Mathf.Clamp(currentSpeed, 0, 2);
+        _currentSpeed = Mathf.Clamp(_currentSpeed, 0, 1);
+        playerSpeedRate = Mathf.Clamp(playerSpeedRate, 0, 1);
 
-        animator.SetFloat("Speed", currentSpeed);
-
-        //MovePlayerCamera();
+        animator.SetFloat("Run_Speed", _currentSpeed);
         
         bool _isGrounded = IsGrounded();
         if (Input.GetKeyDown(KeyCode.Space) && _isGrounded)
         {
 
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            _isGrounded = true;
         }
 
-        animator.SetBool("Jump", !_isGrounded);
+        animator.SetBool("IsJumping", !_isGrounded);
 
         if (Input.GetMouseButtonDown(0))
         {
             Attack();
         }
     }
-
+    //fonction qui calcul les mouvements de la camera du joueur et du joueur 
     void MovePlayer()
     {
         float _targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cam.transform.eulerAngles.y;
@@ -108,54 +107,60 @@ public class PersonnageController : MonoBehaviour
         transform.rotation = Quaternion.Euler(0f, _anle, 0f);
         Vector3 _moveDir = Quaternion.Euler(0, _targetAngle, 0) * Vector3.forward;
         _moveDir = _moveDir.normalized;
-        rb.MovePosition(transform.position + (_moveDir * vitessePers * Time.deltaTime));
+        rb.MovePosition(transform.position + (_moveDir * (vitessePers * playerSpeedRate) * Time.deltaTime));
     }
+    //fonction qui permet d'établir si le joueur touche le sol grâce à un raycast
     bool IsGrounded()
     {
         RaycastHit hit;
         Debug.DrawRay(transform.position + new Vector3(0, 0.1f, 0), Vector3.down);
-        return (Physics.Raycast(transform.position + new Vector3(0, 0.1f, 0), Vector3.down, out hit, 0.5f, groundMask));
+        return (Physics.Raycast(transform.position + new Vector3(0, 0.1f, 0), Vector3.down, out hit, 0.4f, groundMask));
     }
 
     public void Attack()
     {
-        if (!canAttack) return;
-        StartCoroutine(timeCourout());
-        lastAttackTime = Time.timeSinceLevelLoad;
+        if (alreadyAttacked) return;
+        StartCoroutine(AttackCorout());
     }
 
-    IEnumerator timeCourout()
+    IEnumerator AttackCorout()
     {
-        animator.SetBool("Attack", true);
-        yield return new WaitForSeconds(0.8f);
-        animator.SetBool("Attack", false);
+        animator.SetTrigger("IsAttacking");
+
+        alreadyAttacked = true;
+        float t = 0;
+        while (t < 0.7f) { t += Time.deltaTime; yield return null; }
         Collider[] hitEnemis = Physics.OverlapSphere(attackPoint.position, attackRange, enemyLayer);
-        foreach (Collider Enemy in hitEnemis)
+
+
+        foreach (Collider enemy in hitEnemis)
         {
             lastAttackTime = Time.timeSinceLevelLoad;
-            Enemy.GetComponent<LifeSystem>().TakeDamage(attackDamage);
+            LifeSystem _lifeSystem = enemy.GetComponent<LifeSystem>();
+            if (_lifeSystem == null) continue;
+            Debug.Log(_lifeSystem.gameObject.name);
+            _lifeSystem.TakeDamage(attackDamage);
 
         }
+        t = 0;
+        while (t < 0.1f) { t += Time.deltaTime; yield return null; }
+
+        alreadyAttacked = false;
+
     }
+
 
     public void TakeDamage(int damage)
     {
         health -= damage;
         lifeSystem.healthbar.UpdateHealth();
-        animator.SetTrigger("AsDamage");
         if (health < 0) Invoke(nameof(OnDie), 5f);
-        
+
     }
     void OnDie()
     {
         animator.SetTrigger("IsDying");
-        lifeSystem.onDieDel -= OnDie;
-        StartCoroutine(waitForDeath());
-    }
-
-    IEnumerator waitForDeath()
-    {
-        yield return new WaitForSeconds(4f);
         SceneManager.LoadScene("GameOver");
+        lifeSystem.onDieDel -= OnDie;
     }
 }

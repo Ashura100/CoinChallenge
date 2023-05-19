@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class GameOver : MonoBehaviour
 {
-    //charge la scene choisis 
+    //charge la scene choisis pour les boutons recommencé et retour menu
     public void chargerScene(string nomScene)
     {
         SceneManager.LoadScene(nomScene);

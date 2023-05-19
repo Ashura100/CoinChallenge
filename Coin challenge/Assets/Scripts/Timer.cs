@@ -14,8 +14,9 @@ public class Timer : MonoBehaviour
     private void Start()
     {
         Being(Duration);
+        Debug.Log(gameObject.name + "**************************");
     }
-
+    //fonction qui met en marche le timer
     void Being(int Second)
     {
         remainingDuration = Second;

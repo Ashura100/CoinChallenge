@@ -78,7 +78,7 @@ public class Crab : MonoBehaviour, Ilockable
             return;
         }
 
-        playerInSightRange = Physics.CheckSphere(transform.position, sightRange, playerMask); Debug.Log(playerInSightRange);
+        playerInSightRange = Physics.CheckSphere(transform.position, sightRange, playerMask);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, playerMask);
 
         if (!playerInSightRange && !playerInAttackRange) Patrouille();

@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class Checkpoint : MonoBehaviour
 {
-    private void Start()
-    {
-
-    }
     //zone dans laquelle respawn le joueur
     private void OnTriggerEnter(Collider collision)
     {

@@ -39,6 +39,7 @@ public class LockController : MonoBehaviour
             
         }
     }
+    //premet de rendre focusable les ennemis en fonction de leur distance
     List<Ilockable> GetIlockables()
     {
         resultTemp.Clear();

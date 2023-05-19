@@ -78,7 +78,7 @@ public class Ghoul : MonoBehaviour, Ilockable
             return;
         }
 
-        playerInSightRange = Physics.CheckSphere(transform.position, sightRange, playerMask); Debug.Log(playerInSightRange);
+        playerInSightRange = Physics.CheckSphere(transform.position, sightRange, playerMask); 
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, playerMask);
 
         if (!playerInSightRange && !playerInAttackRange) Patrouille();
@@ -113,7 +113,6 @@ public class Ghoul : MonoBehaviour, Ilockable
     }
     void Poursuite()
     {
-        Debug.Log("poursuit");
         anim.SetFloat("Velocity", 1);
         _navMeshAgent.SetDestination(player.position);
         _navMeshAgent.speed = poursuiteSpeed;
@@ -132,16 +131,19 @@ public class Ghoul : MonoBehaviour, Ilockable
 
         transform.LookAt(player);
 
-        anim.SetBool("Attack", true);
-        Debug.Log("attaque");
+        anim.SetTrigger("Attack");
+
+
+        yield return new WaitForSeconds(1f);
+
         Collider[] hitEnemis = Physics.OverlapSphere(attackPoint.position, attackRange, playerMask);
         foreach (Collider Enemy in hitEnemis)
         {
             player.GetComponent<LifeSystem>().TakeDamage(attackDamage);
         }
 
-        yield return new WaitForSeconds(2f);
-        anim.SetBool("Attack", false);
+
+
 
     }
 

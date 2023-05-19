@@ -21,6 +21,7 @@ public class Coffre : MonoBehaviour, Iinteractable
         {
             return !Anim.GetBool("OuvrirCoffre");
         }
+
         set
         {
 
@@ -45,12 +46,12 @@ public class Coffre : MonoBehaviour, Iinteractable
     //fonction d'interaction qui fait appel à la couroutine quand le joueur est bien dans le périmètre du coffre
     public void Interact(GameObject gameInteraction)
     {
+        interactUI.enabled = false;
         if (gameInteraction.CompareTag("Player"))
         {
             StartCoroutine(Interactcouroute(gameInteraction));
             
             isInRange = true;
-            Debug.Log(gameInteraction.name);
 
         }
     }
@@ -60,10 +61,9 @@ public class Coffre : MonoBehaviour, Iinteractable
         interactUI.enabled = true;
         while (Vector3.Distance(transform.position, player.transform.position) < 10f)
         {
-            Debug.Log("while");
             if (Input.GetKeyDown(KeyCode.E))
             {
-                Debug.Log("E");
+
                 OpenChest();
             }
             yield return null;    

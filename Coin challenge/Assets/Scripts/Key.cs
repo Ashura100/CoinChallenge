@@ -12,7 +12,7 @@ public class Key : MonoBehaviour, Iinteractable
     {
         get
         {
-            return true;
+            return canBeCollected;
         }
         set
         {

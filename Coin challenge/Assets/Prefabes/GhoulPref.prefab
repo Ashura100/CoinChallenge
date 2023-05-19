@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5390119980331890550
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 107448618985369965}
+  m_Layer: 7
+  m_Name: Attack_Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &107448618985369965
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5390119980331890550}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 7.64, z: 5.08}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6076190011266132844}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6076190011266132845
 GameObject:
   m_ObjectHideFlags: 0
@@ -15,6 +45,7 @@ GameObject:
   - component: {fileID: 6076190011266132833}
   - component: {fileID: 6076190011266132834}
   - component: {fileID: 6224754533468332495}
+  - component: {fileID: 3832962065329714665}
   m_Layer: 7
   m_Name: GhoulPref
   m_TagString: Untagged
@@ -34,6 +65,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6079061224562406716}
+  - {fileID: 107448618985369965}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -64,12 +96,12 @@ MonoBehaviour:
   walkPointRange: 10
   patrouilleSpeed: 5
   poursuiteSpeed: 15
-  timeBetweenAttacks: 1
+  timeBetweenAttacks: 2
   sightRange: 20
   attackRange: 10
   playerInSightRange: 0
   playerInAttackRange: 0
-  attackPoint: {fileID: 3185384954611248986}
+  attackPoint: {fileID: 107448618985369965}
   attackDamage: 1
   health: 100
 --- !u!195 &6076190011266132839
@@ -235,6 +267,20 @@ MonoBehaviour:
   maxHealth: 100
   currentHealth: 0
   healthbar: {fileID: 3193678194622635160}
+--- !u!136 &3832962065329714665
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6076190011266132845}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 4
+  m_Height: 10
+  m_Direction: 1
+  m_Center: {x: 0, y: 5, z: 0}
 --- !u!1001 &6076190011652399840
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -602,7 +648,8 @@ PrefabInstance:
       propertyPath: focusCam
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6777868142246255472, guid: 227ee07e9e5b7914ba8fbb8f430be9a5, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 227ee07e9e5b7914ba8fbb8f430be9a5, type: 3}
 --- !u!4 &6079061224562406716 stripped
 Transform:
@@ -612,11 +659,6 @@ Transform:
 --- !u!95 &4722559576466607382 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 1574870595864637430, guid: 227ee07e9e5b7914ba8fbb8f430be9a5, type: 3}
-  m_PrefabInstance: {fileID: 6076190011652399840}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &3185384954611248986 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8675679053416189370, guid: 227ee07e9e5b7914ba8fbb8f430be9a5, type: 3}
   m_PrefabInstance: {fileID: 6076190011652399840}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &3193678194622635160 stripped

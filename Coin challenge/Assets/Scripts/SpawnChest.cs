@@ -39,9 +39,12 @@ public class SpawnChest : MonoBehaviour
 
     IEnumerator MouveItemsCorout(SpawnInfos spawnInfos)
     {
+        spawnInfos.iinteractable.isInteractable = false;
         spawnInfos.itemsInst.gameObject.SetActive(true);
         Vector3 startPos = spawnInfos.spawnPose.position;
-        Vector3 targetPos = startPos + new Vector3(0, 2, 0);
+        Vector3 targetPos = startPos + new Vector3(0, 4, 0);
+
+        yield return new WaitForSeconds(1);
         float t = 0;
         while (t < 1)
         {
@@ -51,7 +54,7 @@ public class SpawnChest : MonoBehaviour
         }
         spawnInfos.iinteractable.isInteractable = true;
     }
-
+    
     [System.Serializable]
     public class SpawnInfos
     {

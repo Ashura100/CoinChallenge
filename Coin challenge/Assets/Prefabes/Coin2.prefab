@@ -62,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5b165a09fcc134ca6a6c2467abd6e36a, type: 2}
+  - {fileID: 2100000, guid: ad8ccc30962866444bf5621df4062444, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -98,6 +98,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   coinValue: 20
   CoinCollect: {fileID: 8300000, guid: 0b193ff55c36aa648a66638d24f86e1f, type: 3}
+  canBeCollected: 1
 --- !u!65 &7205223236806716907
 BoxCollider:
   m_ObjectHideFlags: 0
